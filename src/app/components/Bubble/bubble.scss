@@ -1,0 +1,54 @@
+.bubble__editable {
+  position: relative;
+  background: var(--editable);
+  color: var(--editable-text);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  text-align: left;
+}
+
+.bubble {
+  position: relative;
+
+  .bubble__form {
+    padding: 1rem;
+    border-radius: 1rem;
+    background: var(--bg-editable-form);
+    box-shadow: 0 0 10px 0 rgba(#000, 0.2);
+    display: none;
+    position: absolute;
+    // transform: translateX(-50%);
+    inset: calc(100% + 1rem) 0 auto 0;
+    font-family: 'Arial', sans-serif;
+    width: 200px;
+    z-index: 1;
+  }
+
+  &.bubble--is-open .bubble__form {
+    display: block;
+  }
+}
+
+.bubble__label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.bubble__desc {
+  display: block;
+  margin-block-start: 0.5rem;
+  font-size: 0.8rem;
+}
+
+textarea,
+input {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 0;
+  max-width: 100%;
+}
