@@ -1,6 +1,12 @@
 .bubble__editable {
+  background-color: transparent;
   position: relative;
-  background: var(--editable);
+  text-decoration: dashed;
+  text-decoration-line: underline;
+  text-decoration-color: var(--editable);
+  text-decoration-thickness: 2px;
+  text-decoration-style: wavy;
+  text-decoration-skip-ink: none;
   color: var(--editable-text);
   border: none;
   cursor: pointer;
@@ -24,7 +30,10 @@
     // transform: translateX(-50%);
     inset: calc(100% + 1rem) 0 auto 0;
     font-family: 'Arial', sans-serif;
-    width: 200px;
+    font-size: 1rem;
+    font-style: normal;
+    text-align: left;
+    width: 240px;
     z-index: 1;
   }
 
@@ -36,6 +45,7 @@
 .bubble__label {
   display: block;
   margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 .bubble__desc {
@@ -50,5 +60,5 @@ input {
   padding: 0.5rem;
   border-radius: 5px;
   border: 0;
-  max-width: 100%;
+  width: 100%;
 }

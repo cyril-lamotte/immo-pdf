@@ -1,10 +1,19 @@
-import { useContext, useState, useId } from 'react';
+import { useContext, useEffect, useState, useId } from 'react';
 import { TenantContext } from '../../contexts/TenantContext.js';
 import './bubble.scss';
 
-export default function Bubble(props: { item: string, widget?: string}) {
+export default function Bubble(props: { item: string, widget?: string, type?: string}) {
   const [isOpen, setIsOpen] = useState(false);
   const { tenant, setTenant } = useContext(TenantContext);
+
+  useEffect(() => {
+    // Listen to hide event to close bubble.
+    document.addEventListener('onBubbleHide', (e) => {
+      if (e.detail !== id) {
+        setIsOpen(false);
+      }
+    });
+  }, []);
 
   const value = tenant[props.item].value;
 
@@ -22,23 +31,26 @@ export default function Bubble(props: { item: string, widget?: string}) {
     bubbleClass += ' bubble--is-open';
   }
 
-  function toggle() {
+  function handleClick() {
     setIsOpen(!isOpen);
+    const event = new CustomEvent('onBubbleOpen', { detail: id });
+    document.dispatchEvent(event);
   }
 
-  function setValue(value: string) {
-    const prop = {
-      value: value,
-      label: tenant[props.item].label,
-      desc: tenant[props.item].desc,
+  function setValue(value: any) {
+    if (props.type === 'int') {
+      value = parseInt(value);
     }
 
-    setTenant({ ...tenant, [props.item]: prop });
+    // Clone tenant object.
+    const tenantClone = JSON.parse(JSON.stringify(tenant));
+    tenantClone[props.item].value = value
+    setTenant(tenantClone);
   }
 
   return (
     <span className={ bubbleClass }>
-      <button type="button" className="bubble__editable" onClick={toggle}>{value}</button>
+      <button type="button" className="bubble__editable" onClick={handleClick}>{value}</button>
       <span className="bubble__form">
         <label htmlFor={id} className="bubble__label">{ tenant[props.item].label }</label>
 
