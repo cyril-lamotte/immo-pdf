@@ -31,7 +31,7 @@ export default function Bubble(props: { item: string, widget?: string, type?: st
     bubbleClass += ' bubble--is-open';
   }
 
-  function handleClick() {
+  function handleClick(e: Event) {
     setIsOpen(!isOpen);
     const event = new CustomEvent('onBubbleOpen', { detail: id });
     document.dispatchEvent(event);
@@ -49,7 +49,7 @@ export default function Bubble(props: { item: string, widget?: string, type?: st
   }
 
   return (
-    <span className={ bubbleClass }>
+    <span className={ bubbleClass } onClick={(e) => e.stopPropagation()}>
       <button type="button" className="bubble__editable" onClick={handleClick}>{value}</button>
       <span className="bubble__form">
         <label htmlFor={id} className="bubble__label">{ tenant[props.item].label }</label>

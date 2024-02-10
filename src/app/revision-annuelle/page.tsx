@@ -19,6 +19,11 @@ export default function AnnualRent() {
     });
   }, []);
 
+  const handleClick = () => {
+    const event = new Event('onBubbleHide');
+    document.dispatchEvent(event);
+  }
+
   const title = 'Révision annuelle du loyer ' + new Date().getFullYear();
 
   // Computed new year.
@@ -37,7 +42,7 @@ export default function AnnualRent() {
   const month = new Date(2010, tenant.month.value, 1).toLocaleString('fr-FR', { month: 'long' });
 
   return (
-    <main>
+    <main onClick={handleClick}>
       <TenantContext.Provider value={{ tenant, setTenant }}>
         <div className="document">
           <DocumentHeader title={title} />
