@@ -1,54 +1,22 @@
 "use client"
 
-import { useState, useEffect } from 'react';
 import Bubble from "../components/Bubble/bubble"
 import DocumentHeader from "../components/DocumentHeader/documentHeader"
 import DocumentFooter from '../components/DocumentFooter/documentFooter';
-import { TenantContext } from '../contexts/TenantContext';
-import { Tenant } from '../types/Tenant';
-import { currentTenant } from '../models/currentTenant';
-import { currentBail } from '../models/currentBail';
+import { BailContext } from '../contexts/BailContext';
+import { useDocument } from '../hooks/document.hook';
+import { getInscrease, getNewIncome, getMonthName, getNextYear } from "../helpers/bail-helper";
 
 export default function AnnualRent() {
-  const [tenant, setTenant] = useState<Tenant>(currentTenant);
-
-  console.log(currentBail);
-
-
-  useEffect(() => {
-    // Listen to hide event to close bubbles.
-    document.addEventListener('onBubbleOpen', (e) => {
-      const bubble_id = e.detail;
-      const event = new CustomEvent('onBubbleHide', { detail: bubble_id });
-      document.dispatchEvent(event);
-    });
-  }, []);
-
-  const handleClick = () => {
-    const event = new Event('onBubbleHide');
-    document.dispatchEvent(event);
-  }
+  const { bail, setBail, handleClick } = useDocument();
 
   const title = 'Révision annuelle du loyer ' + new Date().getFullYear();
 
-  // Computed new year.
-  const irl_new_year = tenant.irl_previous_year.value + 1;
-
-  // Computed % increase, with ceiling of 3.5%.
-  const ceil = 3.50;
-  const real_increase = (tenant.irl_new.value - tenant.irl_previous.value) / tenant.irl_previous.value * 100;
-  const increase = Math.round(Math.min(real_increase, ceil) * 100) / 100;
-
-  // Computed new income.
-  const income = (tenant.previous_income.value * tenant.irl_new.value) / tenant.irl_previous.value + tenant.charges.value;
-  const newIncome = income.toFixed(2);
-
-  // Computed month name.
-  const month = new Date(2010, tenant.month.value, 1).toLocaleString('fr-FR', { month: 'long' });
+  const newIncome = getNewIncome(bail.previous_income, bail.irl_new, bail.irl_previous, bail.charges);
 
   return (
     <main onClick={handleClick}>
-      <TenantContext.Provider value={{ tenant, setTenant }}>
+      <BailContext.Provider value={{ bail, setBail }}>
         <div className="document">
           <DocumentHeader title={title} />
 
@@ -62,20 +30,20 @@ export default function AnnualRent() {
 
           <div className="document__irl-layout">
 
-            <div>
+            <div className="document__compute-income">
               <h2>Calcul du nouveau loyer</h2>
 
               <p>(Loyer &times; IRL ) / IRL précédent + Charges = <strong>Nouveau loyer</strong></p>
               <code>
-                ( { tenant.previous_income.value } x { tenant.irl_new.value} )
-                / { tenant.irl_previous.value } + { tenant.charges.value } = { newIncome }&nbsp;€
+                ( { bail.previous_income } x { bail.irl_new} )
+                / { bail.irl_previous } + { bail.charges } = { newIncome }&nbsp;€
               </code>
             </div>
 
-            <div>
+            <div className="document__irl-data">
 
               <table className="document__table">
-                <caption>IRL du <Bubble item="quarter" type="int" /><sup>{ tenant.quarter.value == 1 ? 'er' : 'ème' }</sup> trimestre</caption>
+                <caption>IRL du <Bubble item="quarter" type="int" /><sup>{ bail.quarter == 1 ? 'er' : 'ème' }</sup> trimestre</caption>
                 <thead>
                   <tr>
                     <th>Année</th>
@@ -84,12 +52,12 @@ export default function AnnualRent() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{ tenant.irl_previous_year.value }</td>
+                    <td><Bubble item="irl_previous_year" type="int" /></td>
                     <td><Bubble item="irl_previous" type="int" /></td>
                   </tr>
                   <tr>
-                    <td>{ irl_new_year }</td>
-                    <td><Bubble item="irl_new" type="int" /> (+{increase}%)</td>
+                    <td>{ getNextYear(bail.irl_previous_year) }</td>
+                    <td><Bubble item="irl_new" type="int" /> (+{ getInscrease(bail.irl_new, bail.irl_previous) }%)</td>
                   </tr>
                 </tbody>
               </table>
@@ -101,7 +69,7 @@ export default function AnnualRent() {
           <div className="document__total">
             <p>Votre nouveau loyer, charges comprises,
               <br />à partir de&nbsp;
-              <strong><u>{ month } { new Date().getFullYear() }</u></strong>&nbsp;:
+              <strong><u><Bubble item="month" type="int" label={ getMonthName(bail.month) } /> { new Date().getFullYear() }</u></strong>&nbsp;:
             </p>
 
             <code className="total"><strong>{ newIncome }&nbsp;€</strong></code>
@@ -114,7 +82,7 @@ export default function AnnualRent() {
 
           <DocumentFooter />
         </div>
-      </TenantContext.Provider>
+      </BailContext.Provider>
     </main>
   )
 }

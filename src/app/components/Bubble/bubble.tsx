@@ -1,16 +1,18 @@
 import { useContext, useEffect, useState, useId } from 'react';
-import { TenantContext } from '../../contexts/TenantContext';
+import { config } from '../../types/Config';
+import { BailContext } from '../../contexts/BailContext';
 import './bubble.scss';
 
 type Props = {
   item: string,
+  label?: string,
   widget?: string,
   type?: string
 }
 
 export default function Bubble(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const { tenant, setTenant } = useContext(TenantContext);
+  const { bail, setBail } = useContext(BailContext);
 
   useEffect(() => {
     // Listen to hide event to close bubble.
@@ -21,7 +23,12 @@ export default function Bubble(props: Props) {
     });
   }, []);
 
-  const value = tenant[props.item].value;
+  const value = bail[props.item];
+
+  let label = value;
+  if (props.label) {
+    label = props.label;
+  }
 
   let widget = 'input';
   if (props.widget) {
@@ -49,21 +56,21 @@ export default function Bubble(props: Props) {
     }
 
     // Clone tenant object.
-    const tenantClone = JSON.parse(JSON.stringify(tenant));
-    tenantClone[props.item].value = value
-    setTenant(tenantClone);
+    const bailClone = JSON.parse(JSON.stringify(bail));
+    bailClone[props.item] = value
+    setBail(bailClone);
   }
 
   return (
     <span className={ bubbleClass } onClick={(e) => e.stopPropagation()}>
-      <button type="button" className="bubble__editable" onClick={handleClick}>{value}</button>
+      <button type="button" className="bubble__editable" onClick={handleClick}>{label}</button>
       <span className="bubble__form">
-        <label htmlFor={id} className="bubble__label">{ tenant[props.item].label }</label>
+        <label htmlFor={id} className="bubble__label">{ config[props.item].label }</label>
 
         { widget === 'input' && <input type="text" name={props.item} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
         { widget === 'textarea' && <textarea name={props.item} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
 
-        <span className="bubble__desc">{ tenant[props.item].desc }</span>
+        <span className="bubble__desc">{ config[props.item].desc }</span>
       </span>
     </span>
   )
