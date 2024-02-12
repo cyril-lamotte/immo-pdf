@@ -4,12 +4,10 @@ export const currentTenant:Tenant = {
   quarter: {
     value: 1,
     label: 'Trimestre',
-    desc: '',
   },
   irl_previous_year: {
     value: 2023,
     label: "Année de l'IRL précédent",
-    desc: '',
   },
   irl_previous: {
     value: 100,

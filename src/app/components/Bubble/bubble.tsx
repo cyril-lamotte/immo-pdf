@@ -1,8 +1,14 @@
 import { useContext, useEffect, useState, useId } from 'react';
-import { TenantContext } from '../../contexts/TenantContext.js';
+import { TenantContext } from '../../contexts/TenantContext';
 import './bubble.scss';
 
-export default function Bubble(props: { item: string, widget?: string, type?: string}) {
+type Props = {
+  item: string,
+  widget?: string,
+  type?: string
+}
+
+export default function Bubble(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const { tenant, setTenant } = useContext(TenantContext);
 
@@ -31,7 +37,7 @@ export default function Bubble(props: { item: string, widget?: string, type?: st
     bubbleClass += ' bubble--is-open';
   }
 
-  function handleClick(e: Event) {
+  function handleClick() {
     setIsOpen(!isOpen);
     const event = new CustomEvent('onBubbleOpen', { detail: id });
     document.dispatchEvent(event);

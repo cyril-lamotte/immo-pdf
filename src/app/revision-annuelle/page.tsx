@@ -5,6 +5,7 @@ import Bubble from "../components/Bubble/bubble"
 import DocumentHeader from "../components/DocumentHeader/documentHeader"
 import DocumentFooter from '../components/DocumentFooter/documentFooter';
 import { TenantContext } from '../contexts/TenantContext';
+import { Tenant } from '../types/Tenant';
 import { currentTenant } from '../data/currentTenant';
 
 export default function AnnualRent() {
@@ -60,7 +61,7 @@ export default function AnnualRent() {
             <sup>ème</sup> trimestre (Source : ANIL)
           </h2>
 
-          <p><Bubble item="irl_previous_year" /> : <strong><Bubble item="irl_previous" type="int" /></strong></p>
+          <p><Bubble item="irl_previous_year" type="int" /> : <strong><Bubble item="irl_previous" type="int" /></strong></p>
           <p>{ irl_new_year } : <strong><Bubble item="irl_new" type="int" /> (+{increase}%)</strong></p>
 
           <h2>Nouveau loyer</h2>
