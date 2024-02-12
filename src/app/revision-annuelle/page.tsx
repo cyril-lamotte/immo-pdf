@@ -6,10 +6,14 @@ import DocumentHeader from "../components/DocumentHeader/documentHeader"
 import DocumentFooter from '../components/DocumentFooter/documentFooter';
 import { TenantContext } from '../contexts/TenantContext';
 import { Tenant } from '../types/Tenant';
-import { currentTenant } from '../data/currentTenant';
+import { currentTenant } from '../models/currentTenant';
+import { currentBail } from '../models/currentBail';
 
 export default function AnnualRent() {
-  const [tenant, setTenant] = useState(currentTenant);
+  const [tenant, setTenant] = useState<Tenant>(currentTenant);
+
+  console.log(currentBail);
+
 
   useEffect(() => {
     // Listen to hide event to close bubbles.
@@ -53,7 +57,7 @@ export default function AnnualRent() {
           <p>
             Dans le cadre de la révision annuelle des loyers, à l’anniversaire
             du bail, votre loyer est indexé sur le nouvel <em>Indice de
-            Référence des Loyers</em> (IRL) .
+            Référence des Loyers</em> (IRL) (Source : ANIL).
           </p>
 
           <div className="document__irl-layout">
@@ -71,7 +75,7 @@ export default function AnnualRent() {
             <div>
 
               <table className="document__table">
-                <caption>IRL du <Bubble item="quarter" type="int" /> <sup>ème</sup> trimestre (Source : ANIL)</caption>
+                <caption>IRL du <Bubble item="quarter" type="int" /><sup>{ tenant.quarter.value == 1 ? 'er' : 'ème' }</sup> trimestre</caption>
                 <thead>
                   <tr>
                     <th>Année</th>
