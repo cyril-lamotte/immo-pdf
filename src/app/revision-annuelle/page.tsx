@@ -56,27 +56,52 @@ export default function AnnualRent() {
             Référence des Loyers</em> (IRL) .
           </p>
 
-          <h2>
-              Évolution de l’IRL du <Bubble item="quarter" type="int" />
-            <sup>ème</sup> trimestre (Source : ANIL)
-          </h2>
+          <div className="document__irl-layout">
 
-          <p><Bubble item="irl_previous_year" type="int" /> : <strong><Bubble item="irl_previous" type="int" /></strong></p>
-          <p>{ irl_new_year } : <strong><Bubble item="irl_new" type="int" /> (+{increase}%)</strong></p>
+            <div>
+              <h2>Calcul du nouveau loyer</h2>
 
-          <h2>Nouveau loyer</h2>
+              <p>(Loyer &times; IRL ) / IRL précédent + Charges = <strong>Nouveau loyer</strong></p>
+              <code>
+                ( { tenant.previous_income.value } x { tenant.irl_new.value} )
+                / { tenant.irl_previous.value } + { tenant.charges.value } = { newIncome }&nbsp;€
+              </code>
+            </div>
 
-          <p>(Loyer précédent &times; nouvel IRL ) / IRL précédent + Charges locatives = <strong>Nouveau loyer</strong></p>
-          <code>
-            ( { tenant.previous_income.value } x { tenant.irl_new.value} )
-            / { tenant.irl_previous.value } + { tenant.charges.value } = { newIncome }&nbsp;€
-          </code>
+            <div>
 
-          <p>Votre nouveau loyer, charges comprises, à partir de&nbsp;
-            <strong><u>{ month } { new Date().getFullYear() }</u></strong>&nbsp;:
-          </p>
+              <table className="document__table">
+                <caption>IRL du <Bubble item="quarter" type="int" /> <sup>ème</sup> trimestre (Source : ANIL)</caption>
+                <thead>
+                  <tr>
+                    <th>Année</th>
+                    <th>IRL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{ tenant.irl_previous_year.value }</td>
+                    <td><Bubble item="irl_previous" type="int" /></td>
+                  </tr>
+                  <tr>
+                    <td>{ irl_new_year }</td>
+                    <td><Bubble item="irl_new" type="int" /> (+{increase}%)</td>
+                  </tr>
+                </tbody>
+              </table>
 
-          <code className="total"><strong>{ newIncome }&nbsp;€</strong></code>
+            </div>
+
+          </div>
+
+          <div className="document__total">
+            <p>Votre nouveau loyer, charges comprises,
+              <br />à partir de&nbsp;
+              <strong><u>{ month } { new Date().getFullYear() }</u></strong>&nbsp;:
+            </p>
+
+            <code className="total"><strong>{ newIncome }&nbsp;€</strong></code>
+          </div>
 
           <p>Pouvez-vous prendre les dispositions nécessaires pour mettre à jour
             votre virement&nbsp;?</p>

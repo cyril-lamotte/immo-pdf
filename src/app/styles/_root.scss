@@ -2,7 +2,8 @@
   color-scheme: light dark;
   box-sizing: border-box;
 
-  --bg-color: #fff;
+  --bg-color: #f0f0f0;
+  --document-color: #fff;
   --text-color: #333;
   --editable: #0066bb;
   --editable-text: #333;
@@ -10,6 +11,7 @@
 
   @media (prefers-color-scheme: dark) {
     --bg-color: #1c1c1e;
+    --document-color: rgba(#fff, 0.1);
     --text-color: #fefefe;
     --editable: #ffff6d;
     --editable-text: #fff;
