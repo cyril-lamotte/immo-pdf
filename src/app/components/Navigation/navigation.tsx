@@ -1,19 +1,21 @@
 "use client"
 
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import './navigation.scss';
+
 export default function Navigation() {
 
-  function print() {
-    window.print();
-  }
+  const pathname = usePathname()
 
   return (
-    <div className="nav">
+    <header className="nav hidden-print">
       <ul>
-        <li><a href="/revision-annuelle">Révision annuelle</a></li>
-        <li><a href="/depot-de-garantie">Reçu du dépôt de garantie</a></li>
+        <li><Link className={`${pathname === '/' ? 'is-active' : ''}`} href="/">Accueil</Link></li>
+        <li><Link className={`${pathname === '/documents/revision-annuelle' ? 'is-active' : ''}`} href="/documents/revision-annuelle">Révision annuelle</Link></li>
+        <li><Link className={`${pathname === '/documents/depot-de-garantie' ? 'is-active' : ''}`} href="/documents/depot-de-garantie">Reçu du dépôt de garantie</Link></li>
+        <li><Link className={`${pathname === '/documents/facture' ? 'is-active' : ''}`} href="/documents/facture">Facture</Link></li>
       </ul>
-
-      <button type="button" onClick={ print }>Imprimer</button>
-    </div>
+    </header>
   )
 }
