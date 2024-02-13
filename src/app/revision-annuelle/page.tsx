@@ -3,6 +3,7 @@
 import Bubble from "../components/Bubble/bubble"
 import DocumentHeader from "../components/DocumentHeader/documentHeader"
 import DocumentFooter from '../components/DocumentFooter/documentFooter';
+import Navigation from '../components/Navigation/navigation';
 import { BailContext } from '../contexts/BailContext';
 import { useDocument } from '../hooks/document.hook';
 import { getInscrease, getNewIncome, getMonthName, getNextYear } from "../helpers/bail-helper";
@@ -16,6 +17,7 @@ export default function AnnualRent() {
 
   return (
     <main onClick={handleClick}>
+      <Navigation />
       <BailContext.Provider value={{ bail, setBail }}>
         <div className="document">
           <DocumentHeader title={title} />

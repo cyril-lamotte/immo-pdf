@@ -10,4 +10,6 @@ export type Bail = {
   owner_name?: string,
   tenant_address?: string,
   tenant_name?:  string,
+  garantie: number,
+  address: string,
 };

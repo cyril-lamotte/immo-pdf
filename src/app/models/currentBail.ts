@@ -12,4 +12,6 @@ export const currentBail:Bail = {
   tenant_address: '6 rue Late\n53100 Mayenne',
   owner_name: 'M. Y',
   owner_address: '78 bd Matoni\n53100 Mayenne',
+  garantie: 499,
+  address: '6 rue Late\n53100 Mayenne',
 };

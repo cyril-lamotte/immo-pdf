@@ -5,8 +5,10 @@ export default function Home() {
   return (
     <main>
       <div className="document">
-        <a href="/about">A propos</a>
-        <a href="/revision-annuelle">Révision annuelle</a>
+        <ul>
+          <li><a href="/revision-annuelle">Révision annuelle</a></li>
+          <li><a href="/depot-de-garantie">Reçu du dépôt de garantie</a></li>
+        </ul>
       </div>
     </main>
   )

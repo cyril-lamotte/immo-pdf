@@ -44,6 +44,14 @@ type Config = {
     label: string,
     desc?: string,
   },
+  garantie: {
+    label: string,
+    desc?: string,
+  },
+  address: {
+    label: string,
+    desc?: string,
+  }
 }
 
 export const config:Config = {
@@ -89,4 +97,12 @@ export const config:Config = {
     label: 'Nom complet',
     desc: 'Ex : M. Dupond',
   },
+  garantie: {
+    label: 'Montant du dépôt de garantie',
+    desc: 'Ex : 499',
+  },
+  address: {
+    label: 'Adresse du bien',
+    desc: 'Ex : 6 rue Late\n53100 Mayenne',
+  }
 }

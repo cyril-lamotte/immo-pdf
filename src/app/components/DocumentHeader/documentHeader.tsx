@@ -1,15 +1,23 @@
 import Bubble from '../Bubble/bubble';
 
-export default function DocumentHeader({ title }: { title: string }) {
+type Props = {
+  title: string,
+  'hide-tenant'?: string,
+}
+
+export default function DocumentHeader(props: Props) {
   return (
     <header>
       <div className="header-layout">
-        <div className="recipient">
-          <p className="name">
-            <Bubble item="tenant_name" /> <em>(Locataire)</em>
-          </p>
-          <address><Bubble item="tenant_address" widget="textarea" /></address>
-        </div>
+
+        { !props['hide-tenant'] &&
+          <div className="recipient">
+            <p className="name">
+              <Bubble item="tenant_name" /> <em>(Locataire)</em>
+            </p>
+            <address><Bubble item="tenant_address" widget="textarea" /></address>
+          </div>
+        }
 
         <div className="sender">
           <p className="name">
@@ -20,7 +28,7 @@ export default function DocumentHeader({ title }: { title: string }) {
       </div>
 
       <div className="object">
-        <p>Objet&nbsp;: <strong>{ title }</strong></p>
+        <p>Objet&nbsp;: <strong>{ props.title }</strong></p>
       </div>
 
     </header>
