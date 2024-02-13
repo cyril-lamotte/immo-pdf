@@ -1,0 +1,35 @@
+
+.invoice-address {
+  background-color: var(--light-background);
+  padding: 1rem;
+}
+
+.invoice-table {
+  border-collapse: collapse;
+  margin-inline: auto;
+
+  td,
+  th {
+    border: 1px solid #000;
+    padding: 0.5rem;
+  }
+}
+
+.invoice-addresses {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.invoice-address-item {
+  flex-grow: 1;
+}
+
+.invoice-total {
+  text-align: right;
+  font-weight: bold;
+}
+
+.invoice-number {
+  text-align: right;
+}

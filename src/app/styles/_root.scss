@@ -3,6 +3,7 @@
   box-sizing: border-box;
 
   --bg-color: #f0f0f0;
+  --light-background: #fafafa;
   --document-color: #fff;
   --text-color: #333;
   --editable: #0066bb;
@@ -11,10 +12,11 @@
 
   @media (prefers-color-scheme: dark) {
     --bg-color: #1c1c1e;
+    --light-background: #555;
     --document-color: #333;
     --text-color: #fefefe;
     --editable: #ffff6d;
-    --editable-text: #fff;
+    --editable-text: #333;
     --bg-editable-form: #555;
   }
 }

@@ -1,10 +1,19 @@
 @media print {
+
+  body {
+    background: none !important;
+  }
+
   .document {
     padding: 0;
   }
 
   .bubble__editable {
-    text-decoration-line: none !important;
+    background-color: transparent !important;
+
+    &:before {
+      display: none;
+    }
   }
 
   .hidden-print {

@@ -12,8 +12,7 @@
     text-decoration: none;
 
     &.is-active {
-      background-color: var(--editable);
-      border-block-end: 4px solid #fff;
+      border-block-end: 4px solid var(--editable);
     }
   }
 
