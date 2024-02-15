@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { Bail } from "../types/Bail";
 
 export const BailContext = createContext(<Bail>{
-  tenant_name: 'M. Dupond',
+  tenant_name: 'M. Default contexte',
   tenant_address: '6 rue Late\n53100 Mayenne',
   irl_previous_year: 2023,
   irl_previous: 100,

@@ -1,6 +1,8 @@
 
 Projet [Next.js](https://nextjs.org/).
 
+NEXT TODO: Event save to local storage.
+
 ## Getting Started
 
 First, run the development server:

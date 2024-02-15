@@ -1,24 +1,19 @@
 import { Bail } from '../types/Bail';
-import jwt from "jwt-simple";
 
-const token = jwt.encode({
-  tenant_name: 'M. Dupond',
-  irl_previous_year: 2023,
+const data = {
+  tenant_name: 'M. Locataire',
+  irl_previous_year: 2000,
   irl_previous: 100,
-  irl_new: 102,
-  quarter: 1,
-  previous_income: 499,
-  charges: 20,
+  irl_new: 104,
+  quarter: 9,
+  previous_income: 999,
+  charges: 99,
   month: 1,
-  tenant_address: '6 rue Late\n53100 Mayenne',
-  owner_name: 'M. Y',
-  owner_address: '78 bd Matoni\n53100 Mayenne',
-  garantie: 499,
-  address: '6 rue Late\n53100 Mayenne',
-  },
-  "98woAFhtg4rit3aojJRgifofjiawuSDFh3f8iw23hazsknjvISEBF"
-);
-
-const data = jwt.decode(token, "98woAFhtg4rit3aojJRgifofjiawuSDFh3f8iw23hazsknjvISEBF");
+  tenant_address: '9 rue Locataire\n53100 Mayenne',
+  owner_name: 'M. Propriétaire',
+  owner_address: '99 bd Propriétaire\n53100 Mayenne',
+  garantie: 999,
+  address: '99 rue DuBien\n53100 Mayenne',
+};
 
 export const currentBail:Bail = data;
