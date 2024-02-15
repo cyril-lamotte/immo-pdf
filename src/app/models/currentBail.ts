@@ -1,6 +1,7 @@
 import { Bail } from '../types/Bail';
+import jwt from "jwt-simple";
 
-export const currentBail:Bail = {
+const token = jwt.encode({
   tenant_name: 'M. Dupond',
   irl_previous_year: 2023,
   irl_previous: 100,
@@ -14,4 +15,11 @@ export const currentBail:Bail = {
   owner_address: '78 bd Matoni\n53100 Mayenne',
   garantie: 499,
   address: '6 rue Late\n53100 Mayenne',
-};
+  },
+  "98woAFhtg4rit3aojJRgifofjiawuSDFh3f8iw23hazsknjvISEBF"
+);
+
+const data = jwt.decode(token, "98woAFhtg4rit3aojJRgifofjiawuSDFh3f8iw23hazsknjvISEBF");
+console.table(data);
+
+export const currentBail:Bail = data;
