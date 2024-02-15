@@ -20,6 +20,5 @@ const token = jwt.encode({
 );
 
 const data = jwt.decode(token, "98woAFhtg4rit3aojJRgifofjiawuSDFh3f8iw23hazsknjvISEBF");
-console.table(data);
 
 export const currentBail:Bail = data;
