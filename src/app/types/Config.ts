@@ -1,57 +1,23 @@
 
+type FieldConfig = {
+  label: string,
+  desc?: string,
+}
+
 type Config = {
-  quarter: {
-    label: string,
-    desc?: string,
-  },
-  irl_previous_year: {
-    label: string,
-    desc?: string,
-  },
-  irl_previous: {
-    label: string,
-    desc?: string,
-  },
-  irl_new: {
-    label: string,
-    desc?: string,
-  },
-  previous_income: {
-    label: string,
-    desc?: string,
-  },
-  charges: {
-    label: string,
-    desc?: string,
-  },
-  month: {
-    label: string,
-    desc?: string,
-  },
-  owner_address: {
-    label: string,
-    desc?: string,
-  },
-  tenant_address: {
-    label: string,
-    desc?: string,
-  },
-  owner_name: {
-    label: string,
-    desc?: string,
-  },
-  tenant_name: {
-    label: string,
-    desc?: string,
-  },
-  garantie: {
-    label: string,
-    desc?: string,
-  },
-  address: {
-    label: string,
-    desc?: string,
-  }
+  quarter: FieldConfig,
+  irl_previous_year: FieldConfig,
+  irl_previous: FieldConfig,
+  irl_new: FieldConfig,
+  previous_income: FieldConfig,
+  charges: FieldConfig,
+  month: FieldConfig,
+  owner_address: FieldConfig,
+  tenant_address: FieldConfig,
+  owner_name: FieldConfig,
+  tenant_name: FieldConfig,
+  garantie: FieldConfig,
+  address: FieldConfig
 }
 
 export const config:Config = {

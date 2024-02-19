@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { currentBail } from '../models/currentBail';
-import { Bail } from '../types/Bail';
+import { useEffect, useContext } from 'react';
+import { BailContext } from '../contexts/BailContextProvider';
 
 export const useDocument = () => {
-  const [bail, setBail] = useState<Bail>(currentBail);
+  const { bail, setBail, save } = useContext(BailContext);
 
   useEffect(() => {
     // Listen to hide event to close bubbles.
@@ -19,5 +18,5 @@ export const useDocument = () => {
     document.dispatchEvent(event);
   }
 
-  return { bail, setBail, handleClick };
+  return { bail, setBail, save, handleClick };
 }

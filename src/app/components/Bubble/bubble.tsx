@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, useId } from 'react';
 import { config } from '../../types/Config';
-import { BailContext } from '../../contexts/BailContext';
+import { BailContext } from '../../contexts/BailContextProvider';
 import './bubble.scss';
 
 type Props = {
@@ -12,17 +12,22 @@ type Props = {
 
 export default function Bubble(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const { bail, setBail } = useContext(BailContext);
+  const { bail, setBail, save } = useContext(BailContext);
+
+  // Generate bubble unique id.
+  const id = useId();
 
   useEffect(() => {
     // Listen to hide event to close bubble.
     document.addEventListener('onBubbleHide', (e) => {
-      if (e.detail !== id) {
+      const event = e as CustomEvent;
+      if (event.detail !== id) {
         setIsOpen(false);
       }
     });
-  }, []);
+  }, [id]);
 
+  const itemName = props.item as keyof typeof config;
   const value = bail[props.item];
 
   let label = value;
@@ -30,13 +35,14 @@ export default function Bubble(props: Props) {
     label = props.label;
   }
 
+  if (!label) {
+    label = 'À compléter';
+  }
+
   let widget = 'input';
   if (props.widget) {
     widget = props.widget;
   }
-
-  // Generate bubble unique id.
-  const id = useId();
 
   // Add class to bubble if it's open.
   let bubbleClass = 'bubble';
@@ -46,8 +52,8 @@ export default function Bubble(props: Props) {
 
   function handleClick() {
     setIsOpen(!isOpen);
-    const event = new CustomEvent('onBubbleOpen', { detail: id });
-    document.dispatchEvent(event);
+    const bubbleOpenevent = new CustomEvent('onBubbleOpen', { detail: id });
+    document.dispatchEvent(bubbleOpenevent);
   }
 
   function setValue(value: any) {
@@ -58,19 +64,19 @@ export default function Bubble(props: Props) {
     // Clone tenant object.
     const bailClone = JSON.parse(JSON.stringify(bail));
     bailClone[props.item] = value
-    setBail(bailClone);
+    save(bailClone);
   }
 
   return (
     <span className={ bubbleClass } onClick={(e) => e.stopPropagation()}>
       <button type="button" className="bubble__editable" onClick={handleClick}>{label}</button>
       <span className="bubble__form">
-        <label htmlFor={id} className="bubble__label">{ config[props.item].label }</label>
+        <label htmlFor={id} className="bubble__label">{ config[itemName].label }</label>
 
-        { widget === 'input' && <input type="text" name={props.item} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
-        { widget === 'textarea' && <textarea name={props.item} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
+        { widget === 'input' && <input type="text" name={itemName} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
+        { widget === 'textarea' && <textarea name={itemName} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
 
-        <span className="bubble__desc">{ config[props.item].desc }</span>
+        <span className="bubble__desc">{ config[itemName].desc }</span>
       </span>
     </span>
   )

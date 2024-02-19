@@ -7,7 +7,7 @@ import { useDocument } from '../../hooks/document.hook';
 import { getInscrease, getNewIncome, getMonthName, getNextYear } from "../../helpers/bail-helper";
 
 export default function AnnualRent() {
-  const { bail, setBail, handleClick } = useDocument();
+  const { bail, setBail, save, handleClick } = useDocument();
   const title = 'Révision annuelle du loyer ' + new Date().getFullYear();
 
   const newIncome = getNewIncome(bail.previous_income, bail.irl_new, bail.irl_previous, bail.charges);

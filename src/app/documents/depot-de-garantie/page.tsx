@@ -3,7 +3,7 @@
 import Bubble from "../../components/Bubble/bubble"
 import DocumentHeader from "../../components/DocumentHeader/documentHeader"
 import DocumentFooter from '../../components/DocumentFooter/documentFooter';
-import { BailContext } from '../../contexts/BailContext';
+import { BailContext } from '../../contexts/BailContextProvider';
 import { useDocument } from '../../hooks/document.hook';
 
 export default function DepotDeGarantie() {
