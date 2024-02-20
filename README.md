@@ -3,7 +3,6 @@ Projet [Next.js](https://nextjs.org/).
 
 ## Backlog
 
-- Close en ESC key
 - Empty button in inputs
 - Draw signature
 - Import signature

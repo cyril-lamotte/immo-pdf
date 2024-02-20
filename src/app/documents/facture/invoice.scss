@@ -23,6 +23,11 @@
 
 .invoice-address-item {
   flex-grow: 1;
+
+  h2 {
+    padding-block-end: 1rem;
+    border-block-end: 2px solid var(--text-color);
+  }
 }
 
 .invoice-total {
