@@ -1,3 +1,4 @@
+import React from 'react';
 import Bubble from '../Bubble/bubble';
 
 type Props = {

@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import type { Metadata } from 'next'
 import Print from '@/app/components/Print/print'
 import Loading from '@/app/components/Loading/Loading';

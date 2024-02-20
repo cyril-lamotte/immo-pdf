@@ -15,10 +15,5 @@ export const useDocument = () => {
     });
   }, []);
 
-  const handleClick = () => {
-    const event = new Event('onBubbleHide');
-    document.dispatchEvent(event);
-  }
-
-  return { bail, setBail, save, handleClick };
+  return { bail, setBail, save };
 }

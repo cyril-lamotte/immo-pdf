@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import jwt from "jwt-simple";
 import { FileCheck2, Link2 } from 'lucide-react';
 import './print.scss';

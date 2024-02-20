@@ -1,4 +1,4 @@
-import { useEffect, useState, useId } from 'react';
+import React, { useEffect, useState, useId } from 'react';
 import { config } from '../../types/Config';
 import { useBailContext } from '../../contexts/BailContextProvider';
 import './bubble.scss';
@@ -54,6 +54,13 @@ export default function Bubble(props: Props) {
     setIsOpen(!isOpen);
     const bubbleOpenevent = new CustomEvent('onBubbleOpen', { detail: id });
     document.dispatchEvent(bubbleOpenevent);
+
+    // Set focus and select content after delay.
+    const input = document.getElementById(id) as HTMLInputElement;
+    setTimeout(() => {
+      input.select();
+      input.focus();
+    }, 1);
   }
 
   function setValue(value: any) {
@@ -68,13 +75,13 @@ export default function Bubble(props: Props) {
   }
 
   return (
-    <span className={ bubbleClass } onClick={(e) => e.stopPropagation()}>
+    <span className={ bubbleClass } onMouseDown={(e) => e.stopPropagation()}>
       <button type="button" className="bubble__editable" onClick={handleClick}>{label}</button>
       <span className="bubble__form">
         <label htmlFor={id} className="bubble__label">{ config[itemName].label }</label>
 
-        { widget === 'input' && <input type="text" name={itemName} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
-        { widget === 'textarea' && <textarea name={itemName} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
+        { widget === 'input' && <input autoFocus={true} type="text" name={itemName} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
+        { widget === 'textarea' && <textarea autoFocus name={itemName} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
 
         <span className="bubble__desc">{ config[itemName].desc }</span>
       </span>

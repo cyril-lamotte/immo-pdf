@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import Bubble from "../../components/Bubble/bubble"
 import DocumentHeader from "../../components/DocumentHeader/documentHeader"
 import DocumentFooter from '../../components/DocumentFooter/documentFooter';
@@ -7,13 +8,13 @@ import { BailContext } from '../../contexts/BailContextProvider';
 import { useDocument } from '../../hooks/document.hook';
 
 export default function DepotDeGarantie() {
-  const { bail, setBail, handleClick } = useDocument();
+  const { bail, setBail } = useDocument();
 
   const title = 'Reçu dépôt de garantie';
 
   return (
-    <article className="document" onClick={handleClick}>
-      <BailContext.Provider value={{ bail, setBail }}>
+    <article className="document">
+      <BailContext.Provider value={{ bail, setBail, save }}>
         <DocumentHeader title={title} hide-tenant="true" />
 
         <p>Je soussigné <strong><Bubble item="owner_name" /></strong>, bailleur du bien

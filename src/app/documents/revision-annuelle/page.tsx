@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import Bubble from "../../components/Bubble/bubble"
 import DocumentHeader from "../../components/DocumentHeader/documentHeader"
 import DocumentFooter from '../../components/DocumentFooter/documentFooter';
@@ -7,13 +8,13 @@ import { useDocument } from '../../hooks/document.hook';
 import { getInscrease, getNewIncome, getMonthName, getNextYear } from "../../helpers/bail-helper";
 
 export default function AnnualRent() {
-  const { bail, setBail, save, handleClick } = useDocument();
+  const { bail, setBail, save } = useDocument();
   const title = 'Révision annuelle du loyer ' + new Date().getFullYear();
 
   const newIncome = getNewIncome(bail.previous_income, bail.irl_new, bail.irl_previous, bail.charges);
 
   return (
-    <article className="document" onClick={handleClick}>
+    <article className="document">
       <DocumentHeader title={title} />
 
       <p>Bonjour <Bubble item="tenant_name" />,</p>

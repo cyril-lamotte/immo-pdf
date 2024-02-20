@@ -3,8 +3,8 @@ Projet [Next.js](https://nextjs.org/).
 
 ## Backlog
 
-- React linter for best pratices
-- Better click managment for bubbles
+- Close en ESC key
+- Empty button in inputs
 - Draw signature
 - Import signature
 
