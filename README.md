@@ -3,6 +3,7 @@ Projet [Next.js](https://nextjs.org/).
 
 ## Backlog
 
+- React linter for best pratices
 - Better click managment for bubbles
 - Draw signature
 - Import signature
