@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState, useId } from 'react';
+import { useEffect, useState, useId } from 'react';
 import { config } from '../../types/Config';
-import { BailContext } from '../../contexts/BailContextProvider';
+import { useBailContext } from '../../contexts/BailContextProvider';
 import './bubble.scss';
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 export default function Bubble(props: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const { bail, setBail, save } = useContext(BailContext);
+  const { bail, setBail, save } = useBailContext();
 
   // Generate bubble unique id.
   const id = useId();
@@ -28,7 +28,7 @@ export default function Bubble(props: Props) {
   }, [id]);
 
   const itemName = props.item as keyof typeof config;
-  const value = bail[props.item];
+  const value = bail[itemName];
 
   let label = value;
   if (props.label) {
@@ -63,7 +63,7 @@ export default function Bubble(props: Props) {
 
     // Clone tenant object.
     const bailClone = JSON.parse(JSON.stringify(bail));
-    bailClone[props.item] = value
+    bailClone[itemName] = value;
     save(bailClone);
   }
 

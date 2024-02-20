@@ -1,10 +1,22 @@
-import React, { createContext, useEffect, useState, useLayoutEffect } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import { Bail } from "../types/Bail";
 import jwt from "jwt-simple";
 
-export const BailContext = createContext({});
+type BailContext = {
+  bail: Bail;
+  setBail?: (bail: Bail) => void;
+  save: (bail: Bail) => void;
+}
 
-const getData = () => {
+/**
+ * BailContext.
+ */
+export const BailContext = createContext<BailContext | null>(null);
+
+/**
+ * Get data from URL or local storage.
+ */
+export const getData = () => {
   // Get data attribute from URL.
   const url = new URL(window.location.href);
   const token = url.searchParams.get('data') ?? null;
@@ -23,6 +35,9 @@ const getData = () => {
   return {};
 }
 
+/**
+ * BailContextProvider component.
+ */
 export const BailContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [bail, setBail] = useState({});
 
@@ -40,4 +55,15 @@ export const BailContextProvider = ({ children }: { children: React.ReactNode })
       {children}
     </BailContext.Provider>
   )
+}
+
+/**
+ * BailContext hook.
+ */
+export function useBailContext() {
+  const context = useContext(BailContext);
+  if (!context) {
+    throw new Error('useBailContext must be used within a BailContextProvider');
+  }
+  return context;
 }

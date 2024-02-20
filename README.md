@@ -1,7 +1,11 @@
 
 Projet [Next.js](https://nextjs.org/).
 
-NEXT TODO: Event save to local storage.
+## Backlog
+
+- Better click managment for bubbles
+- Draw signature
+- Import signature
 
 ## Getting Started
 

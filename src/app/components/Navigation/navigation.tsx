@@ -11,7 +11,7 @@ export default function Navigation() {
   return (
     <header className="nav hidden-print">
       <ul>
-        <li><Link className={`${pathname === '/' ? 'is-active' : ''}`} href="/">Accueil</Link></li>
+        <li><Link className={`${pathname === '/' ? 'is-active' : ''}`} href="/">Tableau de bord</Link></li>
         <li><Link className={`${pathname === '/documents/revision-annuelle' ? 'is-active' : ''}`} href="/documents/revision-annuelle">Révision annuelle</Link></li>
         <li><Link className={`${pathname === '/documents/depot-de-garantie' ? 'is-active' : ''}`} href="/documents/depot-de-garantie">Reçu du dépôt de garantie</Link></li>
         <li><Link className={`${pathname === '/documents/facture' ? 'is-active' : ''}`} href="/documents/facture">Facture</Link></li>

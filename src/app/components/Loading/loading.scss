@@ -1,0 +1,27 @@
+.loading {
+  display: grid;
+  place-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+
+  p {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .lucide {
+    // Animation rotation
+    animation: rotation 1s infinite linear;
+  }
+
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
