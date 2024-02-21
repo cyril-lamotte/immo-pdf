@@ -36,19 +36,20 @@ export default function Bubble(props: Props) {
     label = props.label;
   }
 
+  // Add class to bubble if it's open.
+  let bubbleClass = 'bubble';
+  if (isOpen) {
+    bubbleClass += ' bubble--is-open';
+  }
+
   if (!label) {
+    bubbleClass += ' bubble--is-empty';
     label = 'À compléter';
   }
 
   let widget = 'input';
   if (props.widget) {
     widget = props.widget;
-  }
-
-  // Add class to bubble if it's open.
-  let bubbleClass = 'bubble';
-  if (isOpen) {
-    bubbleClass += ' bubble--is-open';
   }
 
   function handleClick() {

@@ -17,6 +17,5 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Backlog
 
-- Empty button in inputs
 - Draw signature
 - Import signature
