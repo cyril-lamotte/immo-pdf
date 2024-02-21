@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useId } from 'react';
 import { config } from '../../types/Config';
 import { useBailContext } from '../../contexts/BailContextProvider';
+import { XCircle } from 'lucide-react';
 import './bubble.scss';
 
 type Props = {
@@ -63,6 +64,16 @@ export default function Bubble(props: Props) {
     }, 1);
   }
 
+  function onInput(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue(e.target.value);
+  }
+
+  function onClear() {
+    setValue('');
+    const input = document.getElementById(id) as HTMLInputElement;
+    input.focus();
+  }
+
   function setValue(value: any) {
     if (props.type === 'int') {
       value = parseInt(value);
@@ -80,8 +91,19 @@ export default function Bubble(props: Props) {
       <span className="bubble__form">
         <label htmlFor={id} className="bubble__label">{ config[itemName].label }</label>
 
-        { widget === 'input' && <input autoFocus={true} type="text" name={itemName} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
-        { widget === 'textarea' && <textarea autoFocus name={itemName} id={id} defaultValue={value} onChange={e => setValue(e.target.value)} />}
+        { widget === 'input' && <>
+          <span className="im-input-wrap">
+            <input autoFocus={true} type="text" name={itemName} id={id} value={value} onInput={onInput} />
+            <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button>
+          </span>
+        </> }
+
+        { widget === 'textarea' && <>
+          <span className="im-input-wrap">
+            <textarea autoFocus name={itemName} id={id} value={value} onChange={e => setValue(e.target.value)} />
+            <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button>
+          </span>
+        </> }
 
         <span className="bubble__desc">{ config[itemName].desc }</span>
       </span>

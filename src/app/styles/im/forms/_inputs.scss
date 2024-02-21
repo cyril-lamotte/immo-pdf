@@ -1,0 +1,20 @@
+
+.im-input-wrap {
+  position: relative;
+  display: flex;
+}
+
+.im-input-clear {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  inset: calc(50% - 13px) 0.25rem auto auto;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: all 150ms;
+
+  &:hover {
+    color: var(--color-primary-hover);
+    transform: scale(1.1);
+  }
+}

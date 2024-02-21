@@ -1,6 +1,6 @@
 .im-btn {
   border: 0;
-  background: #333;
+  background: var(--color-primary);
   color: #fff;
   display: flex;
   gap: 0.5rem;
@@ -8,4 +8,8 @@
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   cursor: pointer;
+
+  &:hover {
+    background: var(--color-primary-hover);
+  }
 }
