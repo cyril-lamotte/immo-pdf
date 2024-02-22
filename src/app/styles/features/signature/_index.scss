@@ -1,0 +1,19 @@
+
+.signature__block {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.signature__clear {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+}
+
+.signature__canvas {
+  border: 1px solid var(--color-primary);
+  display: block;
+}

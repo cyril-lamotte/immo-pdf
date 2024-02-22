@@ -17,5 +17,5 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Backlog
 
-- Draw signature
 - Import signature
+- Indiquer le label des bubbles au survol

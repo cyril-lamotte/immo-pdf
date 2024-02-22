@@ -17,7 +17,7 @@
 }
 
 .object {
-  margin: 2rem 0;
+  margin: 1rem 0 2rem;
   border: 1px solid var(--text-color);
   border-width: 2px 0;
   font-size: 1.2rem;
@@ -48,6 +48,10 @@ address {
   display: grid;
   grid-template-areas:
     "sender object";
+
+  .name {
+    margin-block-start: 0;
+  }
 }
 
 .signature {
