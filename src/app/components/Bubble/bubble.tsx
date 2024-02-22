@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useId } from 'react';
 import { config } from '../../types/Config';
 import { useBailContext } from '../../contexts/BailContextProvider';
-import { XCircle } from 'lucide-react';
+import { FilePenLine, XCircle } from 'lucide-react';
 import './bubble.scss';
 
 type Props = {
@@ -31,7 +31,7 @@ export default function Bubble(props: Props) {
   const itemName = props.item as keyof typeof config;
   const value = bail[itemName];
 
-  let label = value;
+  let label: string | number | React.ReactNode = value;
   if (props.label) {
     label = props.label;
   }
@@ -44,7 +44,7 @@ export default function Bubble(props: Props) {
 
   if (!label) {
     bubbleClass += ' bubble--is-empty';
-    label = 'À compléter';
+    label = <FilePenLine />;
   }
 
   let widget = 'input';

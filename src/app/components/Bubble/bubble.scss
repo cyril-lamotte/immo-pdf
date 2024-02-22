@@ -23,11 +23,18 @@
   }
 
   .bubble--is-empty & {
-    background-color: red;
+    background-color: var( --color-primary);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: inline-grid;
+    place-content: center;
+    vertical-align: middle;
+    margin-inline: 0.5rem;
     color: #fff;
 
     &:before {
-      border-color: red;
+      border-radius: 50%;
     }
   }
 }
