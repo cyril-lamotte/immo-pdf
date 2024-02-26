@@ -48,12 +48,16 @@ export default function Bubble(props: Props) {
     bubbleClass += ' bubble--is-open';
   }
 
+  if (props.type === 'boolean') {
+    label = value ? 'Oui' : 'Non';
+  }
+
   if (label === '' || label === undefined) {
     bubbleClass += ' bubble--is-empty';
     label = <FilePenLine />;
   }
 
-  let widget = 'input';
+  let widget = config[itemName].widget ?? 'input';
   if (props.widget) {
     widget = props.widget;
   }
@@ -76,7 +80,16 @@ export default function Bubble(props: Props) {
   }
 
   function onInput(e: React.ChangeEvent<HTMLInputElement>) {
-    setValue(e.target.value);
+    let value = e.target.value;
+    if (props.type === 'boolean' && e.target.type === 'checkbox') {
+      value = e.target.checked;
+    }
+
+    if (props.type === 'int') {
+      value = isNaN(parseInt(value)) ? '' : parseInt(value);
+    }
+
+    setValue(value);
   }
 
   function onClear() {
@@ -87,10 +100,6 @@ export default function Bubble(props: Props) {
   }
 
   function setValue(value: any) {
-    if (props.type === 'int') {
-      value = isNaN(parseInt(value)) ? '' : parseInt(value);
-    }
-
     // Clone tenant object.
     const bailClone = JSON.parse(JSON.stringify(bail));
     bailClone[itemName] = value;
@@ -115,9 +124,14 @@ export default function Bubble(props: Props) {
           { widget === 'textarea' && <>
               <textarea autoFocus name={itemName} id={id} value={value} onChange={e => setValue(e.target.value)} />
           </> }
+
+          { widget === 'checkbox' && <>
+            <input autoFocus={true} type="checkbox" name={itemName} id={id} defaultChecked={value} onInput={onInput} />
+            <label htmlFor={id} className="">{ fieldConfig.label }</label>
+          </> }
         </span>
 
-        { widget !== 'date' && <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button> }
+        { widget !== 'date' && widget !== 'checkbox' && <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button> }
 
         <span className="bubble__desc">{ fieldConfig.desc }</span>
       </span>

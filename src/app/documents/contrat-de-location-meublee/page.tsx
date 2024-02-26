@@ -40,7 +40,7 @@ export default function ContratMeublee() {
         <h2>Désignation des parties</h2>
 
         <h3>Le bailleur</h3>
-        <p><Bubble item="owner_name" /> demeurant <Bubble item="owner_address" widget="textarea" />.</p>
+        <p><Bubble item="owner_name" /> demeurant <Bubble item="owner_address" />.</p>
 
         <h3>Le locataire</h3>
         <p><Bubble item="tenant_name" /></p>
@@ -53,7 +53,7 @@ export default function ContratMeublee() {
           <tbody>
             <tr>
               <th scope="row">Adresse</th>
-              <td><Bubble item="address" widget="textarea" /></td>
+              <td><Bubble item="address" /></td>
             </tr>
             <tr>
               <th scope="row">Type d’habitat et régime juridique</th>
@@ -235,7 +235,7 @@ export default function ContratMeublee() {
         </ul>
 
         <h2>Signatures</h2>
-        <p>Fait à Mayenne le <strong><Bubble item="bail_date" widget="date" label={ bailDate } /></strong> pour chaque signataire.</p>
+        <p>Fait à Mayenne le <strong><Bubble item="bail_date" label={ bailDate } /></strong> pour chaque signataire.</p>
 
         <div className="table-signatures">
           <div>

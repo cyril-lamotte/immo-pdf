@@ -16,7 +16,7 @@ export default function DocumentHeader(props: Props) {
             <p className="name">
               <Bubble item="tenant_name" /> <em>(Locataire)</em>
             </p>
-            <address><Bubble item="tenant_address" widget="textarea" /></address>
+            <address><Bubble item="tenant_address" /></address>
           </div>
         }
 
@@ -24,7 +24,7 @@ export default function DocumentHeader(props: Props) {
           <p className="name">
             <Bubble item="owner_name" /> <em>(Bailleur)</em>
           </p>
-          <address><Bubble item="owner_address" widget="textarea" /></address>
+          <address><Bubble item="owner_address" /></address>
         </div>
       </div>
 

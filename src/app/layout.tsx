@@ -5,7 +5,6 @@ import type { Metadata } from 'next'
 import Navigation from './components/Navigation/navigation';
 import { BailContextProvider } from './contexts/BailContextProvider';
 import './styles/styles.scss'
-import { usePage } from './hooks/page.hook';
 
 const metadata: Metadata = {
   title: 'Générateur de documents immobiliers',

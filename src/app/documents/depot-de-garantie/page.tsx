@@ -18,7 +18,7 @@ export default function DepotDeGarantie() {
       <p>Je soussigné <strong><Bubble item="owner_name" /></strong>, bailleur du bien
       situé à l&apos;adresse suivante&nbsp;:</p>
 
-      <address><Bubble item="address" widget="textarea" /></address>
+      <address><Bubble item="address" /></address>
 
       <p>Atteste avoir reçu ce jour la somme de {' '}
         <strong><Bubble item="garantie" type="int" />&nbsp;€</strong> au

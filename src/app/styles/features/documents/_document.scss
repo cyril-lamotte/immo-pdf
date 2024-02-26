@@ -23,9 +23,14 @@
 
 .object {
   margin: 1rem 0 2rem;
+  padding-block: 1rem;
   border: 1px solid var(--text-color);
   border-width: 2px 0;
   font-size: 1.2rem;
+
+  p {
+    margin: 0;
+  }
 }
 
 address {
