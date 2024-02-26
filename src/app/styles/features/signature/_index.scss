@@ -8,12 +8,15 @@
   gap: 1rem;
 }
 
-.signature__clear {
+.signature__tools {
+  display: flex;
+  gap: 1rem;
   position: absolute;
   top: calc(100% + 0.5rem);
 }
 
 .signature__canvas {
+  background: #fff;
   border: 1px solid var(--color-primary);
   display: block;
 }

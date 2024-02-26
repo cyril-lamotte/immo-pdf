@@ -31,6 +31,12 @@ export default function Bubble(props: Props) {
   const itemName = props.item as keyof typeof config;
   const value = bail[itemName];
 
+  // Provide default configuration.
+  let fieldConfig = config[itemName] ?? {
+    label: 'Configuration manquante',
+    desc: 'La configuration',
+  };
+
   let label: string | number | React.ReactNode = value;
   if (props.label) {
     label = props.label;
@@ -42,7 +48,7 @@ export default function Bubble(props: Props) {
     bubbleClass += ' bubble--is-open';
   }
 
-  if (!label) {
+  if (label === '' || label === undefined) {
     bubbleClass += ' bubble--is-empty';
     label = <FilePenLine />;
   }
@@ -65,19 +71,24 @@ export default function Bubble(props: Props) {
     }, 1);
   }
 
+  function handleOver() {
+    console.log(fieldConfig.label);
+  }
+
   function onInput(e: React.ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
   }
 
   function onClear() {
-    setValue('');
+    const resetValue = props.type === 'int' ? undefined : '';
+    setValue(resetValue);
     const input = document.getElementById(id) as HTMLInputElement;
     input.focus();
   }
 
   function setValue(value: any) {
     if (props.type === 'int') {
-      value = parseInt(value);
+      value = isNaN(parseInt(value)) ? '' : parseInt(value);
     }
 
     // Clone tenant object.
@@ -88,25 +99,27 @@ export default function Bubble(props: Props) {
 
   return (
     <span className={ bubbleClass } onMouseDown={(e) => e.stopPropagation()}>
-      <button type="button" className="bubble__editable" onClick={handleClick}>{label}</button>
+      <button type="button" className="bubble__editable" onClick={handleClick} onMouseOver={handleOver}>{label}</button>
       <span className="bubble__form">
-        <label htmlFor={id} className="bubble__label">{ config[itemName].label }</label>
+        <label htmlFor={id} className="bubble__label">{ fieldConfig.label }</label>
 
-        { widget === 'input' && <>
-          <span className="im-input-wrap">
-            <input autoFocus={true} type="text" name={itemName} id={id} value={value} onInput={onInput} />
-            <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button>
-          </span>
-        </> }
+        <span className="im-input-wrap">
+          { widget === 'input' && <>
+              <input autoFocus={true} type="text" name={itemName} id={id} value={value} onInput={onInput} />
+          </> }
 
-        { widget === 'textarea' && <>
-          <span className="im-input-wrap">
-            <textarea autoFocus name={itemName} id={id} value={value} onChange={e => setValue(e.target.value)} />
-            <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button>
-          </span>
-        </> }
+          { widget === 'date' && <>
+              <input autoFocus={true} type="date" name={itemName} id={id} value={value} onInput={onInput} />
+          </> }
 
-        <span className="bubble__desc">{ config[itemName].desc }</span>
+          { widget === 'textarea' && <>
+              <textarea autoFocus name={itemName} id={id} value={value} onChange={e => setValue(e.target.value)} />
+          </> }
+        </span>
+
+        { widget !== 'date' && <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button> }
+
+        <span className="bubble__desc">{ fieldConfig.desc }</span>
       </span>
     </span>
   )

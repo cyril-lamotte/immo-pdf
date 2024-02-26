@@ -2,7 +2,7 @@
 
 import React from 'react';
 import type { Metadata } from 'next'
-import Print from '@/app/components/Print/print'
+import Toolbar from '@/app/components/Toolbar/toolbar'
 import Loading from '@/app/components/Loading/Loading';
 import { usePage } from '@/app/hooks/page.hook';
 
@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="document-layout">
 
-      <Print />
+      <Toolbar />
 
       {children}
     </div>

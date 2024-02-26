@@ -1,3 +1,16 @@
+textarea,
+input:not([type="checkbox"], [type="radio"]) {
+  display: block;
+  padding: 0.5rem;
+  border-radius: 5px;
+  width: 100%;
+  border: 2px solid var(--editable);
+}
+
+textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
 
 .im-input-wrap {
   position: relative;

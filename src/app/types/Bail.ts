@@ -3,6 +3,7 @@ export type Bail = {
   irl_previous_year?: number,
   irl_previous?:  number,
   irl_new?:  number,
+  income?: number,
   previous_income?: number,
   charges?:  number,
   month?:  number,
@@ -12,4 +13,8 @@ export type Bail = {
   tenant_name?:  string,
   garantie?: number,
   address?: string,
+  signature?: string,
+  amount_works?: number,
+  bail_date?: string,
+  caution?: boolean,
 };

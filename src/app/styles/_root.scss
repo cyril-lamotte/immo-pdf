@@ -2,6 +2,7 @@
   color-scheme: light dark;
   box-sizing: border-box;
 
+
   --bg-color: #f0f0f0;
   --light-background: #fafafa;
   --document-color: #fff;
@@ -11,6 +12,7 @@
   --bg-editable-form: #fff;
   --color-primary: #333;
   --color-primary-hover: #555;
+  --color-accent: #0066ff;
 
   @media (prefers-color-scheme: dark) {
     --bg-color: #1c1c1e;

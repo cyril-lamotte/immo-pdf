@@ -3,7 +3,7 @@
 import React from 'react';
 import jwt from "jwt-simple";
 import { FileCheck2, Link2 } from 'lucide-react';
-import './print.scss';
+import './toolbar.scss';
 import { useBailContext } from "@/app/contexts/BailContextProvider";
 import toast, { Toaster } from 'react-hot-toast';
 

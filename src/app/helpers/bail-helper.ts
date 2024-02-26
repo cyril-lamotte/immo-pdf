@@ -24,6 +24,31 @@ export const getNextYear = (irl_previous_year?: number): number => {
 }
 
 /**
+ * Get the total income.
+ * @returns The total income.
+ */
+export const getBailDate = (date?: string): string => {
+  if (!date) {
+    return '';
+  }
+
+  return new Date(date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+/**
+ * Get the total income.
+ * @returns The total income.
+ */
+export const getTotalIncome = (income?: number, charges?: number): number => {
+  if (!income || !charges) {
+    return 0;
+  }
+
+  const totalIncome = income + charges;
+  return parseFloat(totalIncome.toFixed(2));
+}
+
+/**
  * Get the new income.
  * @returns The new income.
  */

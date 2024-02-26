@@ -9,6 +9,7 @@ type Config = {
   irl_previous_year: FieldConfig,
   irl_previous: FieldConfig,
   irl_new: FieldConfig,
+  income: FieldConfig,
   previous_income: FieldConfig,
   charges: FieldConfig,
   month: FieldConfig,
@@ -17,7 +18,10 @@ type Config = {
   owner_name: FieldConfig,
   tenant_name: FieldConfig,
   garantie: FieldConfig,
-  address: FieldConfig
+  address: FieldConfig,
+  amount_works: FieldConfig,
+  bail_date: FieldConfig,
+  caution: FieldConfig,
 }
 
 export const config:Config = {
@@ -34,6 +38,10 @@ export const config:Config = {
   irl_new: {
     label: "Nouvel IRL",
     desc: 'Ex : 104, 138',
+  },
+  income: {
+    label: "Loyer initial",
+    desc: 'Ex : 414',
   },
   previous_income: {
     label: "Loyer précédent",
@@ -70,5 +78,16 @@ export const config:Config = {
   address: {
     label: 'Adresse du bien',
     desc: 'Ex : 6 rue Late\n53100 Mayenne',
-  }
+  },
+  amount_works: {
+    label: 'Montant des travaux',
+    desc: 'Ex : 7000',
+  },
+  bail_date: {
+    label: 'Date de signature',
+    desc: 'Ex : 01/01/2024',
+  },
+  caution: {
+    label: 'Le contrat possède une caution',
+  },
 }

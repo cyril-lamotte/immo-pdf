@@ -74,17 +74,3 @@
   margin-block-start: 0.5rem;
   font-size: 0.8rem;
 }
-
-textarea,
-input {
-  display: block;
-  padding: 0.5rem;
-  border-radius: 5px;
-  width: 100%;
-  border: 2px solid var(--editable);
-}
-
-textarea {
-  min-height: 5rem;
-  resize: vertical;
-}

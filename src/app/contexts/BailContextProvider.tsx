@@ -48,6 +48,7 @@ export const BailContextProvider = ({ children }: { children: React.ReactNode })
   const save = (bail: Bail) => {
     setBail((bail));
     localStorage.setItem('bail', JSON.stringify(bail));
+    console.log('Save', bail);
   }
 
   return (
