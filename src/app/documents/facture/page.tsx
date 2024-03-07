@@ -3,8 +3,13 @@
 import React from 'react';
 import User from "../../components/User/user";
 import './invoice.scss';
+import Bubble from '@/app/components/Bubble/bubble';
+import { formatDate } from '@/app/helpers/date';
+import { useDocument } from '@/app/hooks/document.hook';
 
 export default function Facture() {
+  const { bail, setBail, save } = useDocument();
+
   return (
     <article className="document">
 
@@ -12,8 +17,8 @@ export default function Facture() {
 
         <header className="invoice-header">
           <h1>Facture</h1>
-          <p>N&deg; de facture&nbsp;: 2024-02-13</p>
-          <p>Date&nbsp;: 13 février 2024</p>
+          <p>N&deg; de facture&nbsp;: <Bubble item="invoice_number" /></p>
+          <p>Date&nbsp;: <Bubble item="invoice_date" widget="date" label={ formatDate(bail.invoice_date) } /></p>
         </header>
 
         <div className="invoice-addresses">

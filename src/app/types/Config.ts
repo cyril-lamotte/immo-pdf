@@ -24,6 +24,8 @@ type Config = {
   amount_works: FieldConfig,
   bail_date: FieldConfig,
   caution: FieldConfig,
+  invoice_number: FieldConfig,
+  invoice_date: FieldConfig,
 }
 
 export const config:Config = {
@@ -113,5 +115,14 @@ export const config:Config = {
     label: 'Le contrat possède une caution',
     type: 'boolean',
     widget: 'checkbox',
+  },
+  invoice_number: {
+    label: 'N° de facture',
+    type: 'input',
+  },
+  invoice_date: {
+    label: 'Date de facture',
+    type: 'input',
+    widget: 'date',
   },
 }

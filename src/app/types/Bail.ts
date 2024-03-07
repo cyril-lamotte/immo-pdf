@@ -17,4 +17,6 @@ export type Bail = {
   amount_works?: number,
   bail_date?: string,
   caution?: boolean,
+  invoice_number?: string,
+  invoice_date?: string,
 };
