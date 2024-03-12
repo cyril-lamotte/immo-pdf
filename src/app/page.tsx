@@ -6,10 +6,11 @@ import Bubble from "./components/Bubble/bubble"
 import Loading from './components/Loading/Loading';
 
 export default function Dashboard() {
+
   const { bail } = usePage();
 
   // Test if bail is an empty object.
-  if (Object.keys(bail).length === 0) {
+  if (Object.keys(bail).length < 1) {
     return <Loading />
   }
 

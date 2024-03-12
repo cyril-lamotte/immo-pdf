@@ -6,9 +6,10 @@
   cursor: pointer;
   font-family: inherit;
   font-size: inherit;
+  font-style: inherit;
   font-weight: inherit;
   padding: 0;
-  text-align: left;
+  text-align: inherit;
   transition: all 300ms;
 
   &:hover {

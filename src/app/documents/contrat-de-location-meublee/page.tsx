@@ -4,8 +4,8 @@ import React from 'react';
 import Bubble from "@/app/components/Bubble/bubble"
 import Signature from '@/app/components/Signature/signature';
 import { useDocument } from '@/app/hooks/document.hook';
-import './contrat.scss';
 import { getTotalIncome, getBailDate } from "../../helpers/bail-helper";
+import { formatDate } from '@/app/helpers/date';
 
 export default function ContratMeublee() {
   const { bail, save } = useDocument();
@@ -95,7 +95,7 @@ export default function ContratMeublee() {
 
         <div className="page-break"></div>
         <h2>Date de prise d’effet et durée du contrat</h2>
-        <p>Date de prise d’effet du contrat&nbsp;: <strong>1er mars 2023</strong>.</p>
+        <p>Date de prise d’effet du contrat&nbsp;: <strong><Bubble item="bail_date" widget="date" label={ formatDate(bail.bail_date) } /></strong>.</p>
         <p>Durée du contrat&nbsp;: <strong>1 an</strong>.</p>
 
         <p>Les contrats de location de logements meublés sont reconduits tacitement
@@ -132,7 +132,7 @@ export default function ContratMeublee() {
         <p>Les charges intègrent l’eau collective, l’ascenseur, entretien des espaces verts et parties communes.</p>
 
         <ul>
-          <li>Modalité de règlement et montant des charges récupérables&nbsp;: <strong>Forfait de <Bubble item="charges" />&nbsp;&euro;</strong></li>
+          <li>Modalité de règlement et montant des charges récupérables&nbsp;: <strong>Forfait de <Bubble item="charges" type="int" />&nbsp;&euro;</strong></li>
           <li>Le forfait des charges est révisable chaque année sur la base de l’IRL.</li>
         </ul>
 

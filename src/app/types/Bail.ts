@@ -1,4 +1,5 @@
 export type Bail = {
+  version: string,
   quarter?:  number,
   irl_previous_year?: number,
   irl_previous?:  number,
@@ -19,4 +20,7 @@ export type Bail = {
   caution?: boolean,
   invoice_number?: string,
   invoice_date?: string,
+  quittance_amount?: string,
+  quittance_start_date?: string,
+  quittance_end_date?: string,
 };

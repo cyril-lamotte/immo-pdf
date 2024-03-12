@@ -8,7 +8,7 @@ type Props = {
   item: string,
   label?: string,
   widget?: string,
-  type?: string
+  type?: string,
 }
 
 export default function Bubble(props: Props) {
@@ -34,7 +34,7 @@ export default function Bubble(props: Props) {
   // Provide default configuration.
   let fieldConfig = config[itemName] ?? {
     label: 'Configuration manquante',
-    desc: 'La configuration',
+    desc: 'Configuration manquante',
   };
 
   let label: string | number | React.ReactNode = value;
@@ -57,7 +57,10 @@ export default function Bubble(props: Props) {
     label = <FilePenLine />;
   }
 
-  let widget = config[itemName].widget ?? 'input';
+  // Default widget is input.
+  let widget = config[itemName]?.widget ?? 'input';
+
+  // Override widget if provided.
   if (props.widget) {
     widget = props.widget;
   }
@@ -129,9 +132,10 @@ export default function Bubble(props: Props) {
             <input autoFocus={true} type="checkbox" name={itemName} id={id} defaultChecked={value} onInput={onInput} />
             <label htmlFor={id} className="">{ fieldConfig.label }</label>
           </> }
-        </span>
 
-        { widget !== 'date' && widget !== 'checkbox' && <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button> }
+          { widget !== 'date' && widget !== 'checkbox' && <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button> }
+
+        </span>
 
         <span className="bubble__desc">{ fieldConfig.desc }</span>
       </span>

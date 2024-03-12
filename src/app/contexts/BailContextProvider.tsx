@@ -32,7 +32,9 @@ export const getData = () => {
   }
 
   // Empty object.
-  return {};
+  return {
+    version: '0.1.0',
+  };
 }
 
 /**

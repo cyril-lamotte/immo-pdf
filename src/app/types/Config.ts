@@ -26,6 +26,9 @@ type Config = {
   caution: FieldConfig,
   invoice_number: FieldConfig,
   invoice_date: FieldConfig,
+  quittance_amount: FieldConfig,
+  quittance_start_date: FieldConfig,
+  quittance_end_date: FieldConfig,
 }
 
 export const config:Config = {
@@ -122,6 +125,20 @@ export const config:Config = {
   },
   invoice_date: {
     label: 'Date de facture',
+    type: 'input',
+    widget: 'date',
+  },
+  quittance_amount: {
+    label: 'Montant de la quittance',
+    type: 'input',
+  },
+  quittance_start_date: {
+    label: 'Date de début de la période',
+    type: 'input',
+    widget: 'date',
+  },
+  quittance_end_date: {
+    label: 'Date de fin de la période',
     type: 'input',
     widget: 'date',
   },

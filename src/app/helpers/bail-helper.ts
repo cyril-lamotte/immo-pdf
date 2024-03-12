@@ -44,6 +44,8 @@ export const getTotalIncome = (income?: number, charges?: number): number => {
     return 0;
   }
 
+  console.log(income, charges);
+
   const totalIncome = income + charges;
   return parseFloat(totalIncome.toFixed(2));
 }
