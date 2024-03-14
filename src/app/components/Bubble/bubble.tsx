@@ -38,6 +38,15 @@ export default function Bubble(props: Props) {
   };
 
   let label: string | number | React.ReactNode = value;
+
+  let values = config[itemName]?.values;
+  if (values) {
+    const valueConfig = values.find((item: any) => item.value === value);
+    if (valueConfig) {
+      label = valueConfig.label;
+    }
+  }
+
   if (props.label) {
     label = props.label;
   }
@@ -72,6 +81,7 @@ export default function Bubble(props: Props) {
 
     // Set focus and select content after delay.
     const input = document.getElementById(id) as HTMLInputElement;
+    if (!input) return;
     setTimeout(() => {
       input.select();
       input.focus();
@@ -117,15 +127,15 @@ export default function Bubble(props: Props) {
 
         <span className="im-input-wrap">
           { widget === 'input' && <>
-              <input autoFocus={true} type="text" name={itemName} id={id} value={value} onInput={onInput} />
+            <input autoFocus={true} type="text" name={itemName} id={id} value={value} onInput={onInput} />
           </> }
 
           { widget === 'date' && <>
-              <input autoFocus={true} type="date" name={itemName} id={id} value={value} onInput={onInput} />
+            <input autoFocus={true} type="date" name={itemName} id={id} value={value} onInput={onInput} />
           </> }
 
           { widget === 'textarea' && <>
-              <textarea autoFocus name={itemName} id={id} value={value} onChange={e => setValue(e.target.value)} />
+            <textarea autoFocus name={itemName} id={id} value={value} onChange={e => setValue(e.target.value)} />
           </> }
 
           { widget === 'checkbox' && <>
@@ -133,7 +143,18 @@ export default function Bubble(props: Props) {
             <label htmlFor={id} className="">{ fieldConfig.label }</label>
           </> }
 
-          { widget !== 'date' && widget !== 'checkbox' && <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button> }
+          { widget === 'radios' && <>
+            { config[itemName]?.values?.map((item: any, index: any) => {
+              return <span key={index}>
+                <input autoFocus={true} type="radio" name={itemName} id={id + index} value={item.value} onInput={onInput} />
+                <label htmlFor={id + index}>{item.label}</label>
+              </span>
+            }) }
+          </> }
+
+          { widget !== 'date' && widget !== 'checkbox' && widget !== 'radios' &&
+            <button type="button" className="im-input-clear" onClick={onClear}><XCircle /><span className="visually-hidden">Vider</span></button>
+          }
 
         </span>
 

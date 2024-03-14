@@ -14,6 +14,7 @@ export type Bail = {
   tenant_name?:  string,
   garantie?: number,
   address?: string,
+  surface?: number,
   signature?: string,
   amount_works?: number,
   bail_date?: string,
@@ -23,4 +24,7 @@ export type Bail = {
   quittance_amount?: string,
   quittance_start_date?: string,
   quittance_end_date?: string,
+  type?: string,
+  description?: string,
+  warm_water?: string,
 };

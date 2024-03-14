@@ -14,9 +14,20 @@ export default function ContratMeublee() {
   const bailDate = getBailDate(bail.bail_date);
   const hasCaution = bail.caution;
 
+  const isLocationSaisonniere = bail.type == 'season';
+  const isLocationVide = bail.type == 'empty';
+  const isLocationMeublee = bail.type == 'meuble';
+  const isLocationLongueDuree = isLocationVide || isLocationMeublee;
+
   function onInput(e: React.ChangeEvent<HTMLInputElement>) {
     const bailClone = JSON.parse(JSON.stringify(bail));
     bailClone.caution = e.target.checked;
+    save(bailClone);
+  }
+
+  function onLocationType(e: React.ChangeEvent<HTMLInputElement>) {
+    const bailClone = JSON.parse(JSON.stringify(bail));
+    bailClone.type = e.target.value;
     save(bailClone);
   }
 
@@ -30,6 +41,21 @@ export default function ContratMeublee() {
           <div className="form-group">
             <input type="checkbox" name="caution" id="caution" defaultChecked={bail.caution} onInput={onInput} />
             <label htmlFor="caution"><span>Caution solidaire</span></label>
+          </div>
+          <div className="form-group">
+            <fieldset>
+              <legend>Type de location</legend>
+
+              <input type="radio" name="type" id="location_nue" value="empty" defaultChecked={bail.type == 'empty'} onInput={onLocationType} />
+              <label htmlFor="location_nue"><span>Vide</span></label>
+
+              <input type="radio" name="type" id="location_meublee" value="meuble" defaultChecked={bail.type == 'meuble'} onInput={onLocationType} />
+              <label htmlFor="location_meublee"><span>Meublé</span></label>
+
+              <input type="radio" name="type" id="location_saisonniere" value="season" defaultChecked={bail.type == 'season'} onInput={onLocationType} />
+              <label htmlFor="location_saisonniere"><span>Saisonnière</span></label>
+
+            </fieldset>
           </div>
         </form>
       </div>
@@ -59,30 +85,40 @@ export default function ContratMeublee() {
               <th scope="row">Type d’habitat et régime juridique</th>
               <td>Immeuble collectif en copropriété</td>
             </tr>
+
+            { isLocationLongueDuree && <>
             <tr>
               <th scope="row">Période de construction</th>
               <td>1980</td>
             </tr>
+            </> }
+
             <tr>
               <th scope="row">Pièces principales</th>
-              <td>Entrée, chambre, salle d’eau, salle de vie - cuisine, terrasse, cave (n°10)</td>
+              <td><Bubble item="description" /></td>
             </tr>
             <tr>
               <th scope="row">Surface habitable</th>
-              <td>32m<sup>2</sup></td>
+              <td><Bubble item="surface" />m<sup>2</sup></td>
             </tr>
-            <tr>
-              <th scope="row">Place de stationnement</th>
-              <td>n&deg;&nbsp;242</td>
-            </tr>
+
+            { isLocationLongueDuree && <>
+              <tr>
+                <th scope="row">Place de stationnement</th>
+                <td>n&deg;&nbsp;242</td>
+              </tr>
+            </> }
+
             <tr>
               <th scope="row">Chauffage</th>
               <td>Individuel</td>
             </tr>
+
             <tr>
               <th scope="row">Eau chaude</th>
-              <td>Collective</td>
+              <td><Bubble item="warm_water" /></td>
             </tr>
+
             <tr>
               <th scope="row">Locaux et équipements des parties communes</th>
               <td>Garage à vélo, ascenseur, interphone, espaces verts, Antenne TV.</td>

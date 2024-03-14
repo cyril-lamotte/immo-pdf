@@ -4,6 +4,7 @@ type FieldConfig = {
   desc?: string,
   type?: string,
   widget?: string,
+  values?: any,
 }
 
 type Config = {
@@ -29,6 +30,10 @@ type Config = {
   quittance_amount: FieldConfig,
   quittance_start_date: FieldConfig,
   quittance_end_date: FieldConfig,
+  type: FieldConfig,
+  surface: FieldConfig,
+  description?: FieldConfig,
+  warm_water?: FieldConfig,
 }
 
 export const config:Config = {
@@ -141,5 +146,34 @@ export const config:Config = {
     label: 'Date de fin de la période',
     type: 'input',
     widget: 'date',
+  },
+  type: {
+    label: 'Type de location',
+    type: 'input',
+    widget: 'radio',
+    values: [
+      { label: 'Meublé', value: 'meuble' },
+      { label: 'Vide', value: 'empty' },
+      { label: 'Saisonnière', value: 'season' },
+    ],
+  },
+  surface: {
+    label: 'Surface',
+    type: 'int',
+    desc: 'Ex : 42m<sup>2</sup>',
+  },
+  description: {
+    label: 'Description',
+    type: 'input',
+    widget: 'textarea',
+  },
+  warm_water: {
+    label: 'Eau chaude',
+    type: 'input',
+    widget: 'radios',
+    values: [
+      { label: 'Collective', value: 'collective' },
+      { label: 'Individuelle', value: 'individuelle' },
+    ],
   },
 }
