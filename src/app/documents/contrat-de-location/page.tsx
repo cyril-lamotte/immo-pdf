@@ -4,14 +4,13 @@ import React from 'react';
 import Bubble from "@/app/components/Bubble/bubble"
 import Signature from '@/app/components/Signature/signature';
 import { useDocument } from '@/app/hooks/document.hook';
-import { getTotalIncome, getBailDate } from "../../helpers/bail-helper";
-import { formatDate, countDays } from '@/app/helpers/date';
+import { getTotalIncome, getBailDate, getLocationDuration, getTaxeDeSejour } from "../../helpers/bail-helper";
+import { formatDate } from '@/app/helpers/date';
 
 export default function Contrat() {
   const { bail, save } = useDocument();
   document.title = 'Contrat de location';
   const totalIncome = getTotalIncome(bail.income, bail.charges);
-  const bailDate = getBailDate(bail.bail_date);
   const hasCaution = bail.caution;
 
   const isLocationSaisonniere = bail.type == 'season';
@@ -19,9 +18,12 @@ export default function Contrat() {
   const isLocationMeublee = bail.type == 'meuble';
   const isLocationLongueDuree = isLocationVide || isLocationMeublee;
 
+  const durationDays = getLocationDuration(bail.bail_date, bail.bail_end_date);
 
-  const durationDays = countDays(bail.bail_date, bail.bail_end_date);
-  const taxe_de_sejour = durationDays * bail.tenant_count * 0.80;
+  let taxe_de_sejour = 0;
+  if (bail.tenant_count && durationDays) {
+    taxe_de_sejour = getTaxeDeSejour(bail.tenant_count, durationDays);
+  }
 
   function onInput(e: React.ChangeEvent<HTMLInputElement>) {
     const bailClone = JSON.parse(JSON.stringify(bail));
@@ -296,7 +298,7 @@ export default function Contrat() {
         </ul>
 
         <h2>Signatures</h2>
-        <p>Fait à Mayenne le <strong><Bubble item="bail_date" label={ bailDate } /></strong> pour chaque signataire.</p>
+        <p>Fait à <Bubble item="city" /> le <strong><Bubble item="today" label={ formatDate(bail.today) } /></strong> pour chaque signataire.</p>
 
         <div className="table-signatures">
           <div>

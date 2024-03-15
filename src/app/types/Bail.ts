@@ -32,4 +32,6 @@ export type Bail = {
   heating?: string,
   common_equipment?: string,
   arrhes?: number,
+  city?: string,
+  today?: string,
 };

@@ -179,4 +179,13 @@ export const config:Config = {
     label: 'Arrhes',
     type: 'int',
   },
+  city: {
+    label: 'Ville',
+    type: 'input',
+  },
+  today: {
+    label: 'Date du jour',
+    type: 'input',
+    widget: 'date',
+  },
 }

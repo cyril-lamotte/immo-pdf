@@ -1,3 +1,5 @@
+import { countDays } from "./date";
+
 /**
  * Get the increase of the rent.
  * @returns The increase of the rent.
@@ -44,8 +46,6 @@ export const getTotalIncome = (income?: number, charges?: number): number => {
     return 0;
   }
 
-  console.log(income, charges);
-
   const totalIncome = income + charges;
   return parseFloat(totalIncome.toFixed(2));
 }
@@ -71,4 +71,26 @@ export const getMonthName = (month?: number): string => {
     return '';
   }
   return new Date(2010, month, 1).toLocaleString('fr-FR', { month: 'long' });
+}
+
+/**
+ * Get the location duration.
+ * @returns The location duration.
+ */
+export const getLocationDuration = (startDate?: string, endDate?: string) => {
+  if (startDate && endDate) {
+    return countDays(startDate, endDate);
+  }
+}
+
+/**
+ * Get the taxe.
+ * @returns The taxe.
+ */
+export const getTaxeDeSejour = (tenant_count: number, durationDays: number): number => {
+  if (!tenant_count) {
+    return 0;
+  }
+
+  return durationDays * tenant_count * 0.80;
 }
