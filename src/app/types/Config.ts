@@ -7,34 +7,14 @@ type FieldConfig = {
   values?: any,
 }
 
-type Config = {
-  quarter: FieldConfig,
-  irl_previous_year: FieldConfig,
-  irl_previous: FieldConfig,
-  irl_new: FieldConfig,
-  income: FieldConfig,
-  previous_income: FieldConfig,
-  charges: FieldConfig,
-  month: FieldConfig,
-  owner_address: FieldConfig,
-  tenant_address: FieldConfig,
-  owner_name: FieldConfig,
-  tenant_name: FieldConfig,
-  garantie: FieldConfig,
-  address: FieldConfig,
-  amount_works: FieldConfig,
-  bail_date: FieldConfig,
-  caution: FieldConfig,
-  invoice_number: FieldConfig,
-  invoice_date: FieldConfig,
-  quittance_amount: FieldConfig,
-  quittance_start_date: FieldConfig,
-  quittance_end_date: FieldConfig,
-  type: FieldConfig,
-  surface: FieldConfig,
-  description?: FieldConfig,
-  warm_water?: FieldConfig,
+export type Config = {
+  [key: string]: FieldConfig
 }
+
+const responsabilityType = [
+  { label: 'Collectif', value: 'communal' },
+  { label: 'Individuel', value: 'individual' },
+]
 
 export const config:Config = {
   quarter: {
@@ -87,6 +67,11 @@ export const config:Config = {
     type: 'input',
     widget: 'textarea',
   },
+  tenant_count: {
+    label: 'Nombre de locataires',
+    desc: 'Ex : 1, 2',
+    type: 'int',
+  },
   owner_name: {
     label: 'Nom du proriétaire',
     desc: 'Ex : M. Durand',
@@ -115,6 +100,12 @@ export const config:Config = {
   },
   bail_date: {
     label: 'Date de signature',
+    desc: 'Ex : 01/01/2024',
+    type: 'input',
+    widget: 'date',
+  },
+  bail_end_date: {
+    label: 'Date de fin de location',
     desc: 'Ex : 01/01/2024',
     type: 'input',
     widget: 'date',
@@ -150,9 +141,9 @@ export const config:Config = {
   type: {
     label: 'Type de location',
     type: 'input',
-    widget: 'radio',
+    widget: 'radios',
     values: [
-      { label: 'Meublé', value: 'meuble' },
+      { label: 'Meublée', value: 'meuble' },
       { label: 'Vide', value: 'empty' },
       { label: 'Saisonnière', value: 'season' },
     ],
@@ -171,9 +162,21 @@ export const config:Config = {
     label: 'Eau chaude',
     type: 'input',
     widget: 'radios',
-    values: [
-      { label: 'Collective', value: 'collective' },
-      { label: 'Individuelle', value: 'individuelle' },
-    ],
+    values: responsabilityType,
+  },
+  heating: {
+    label: 'Chauffage',
+    type: 'input',
+    widget: 'radios',
+    values: responsabilityType,
+  },
+  common_equipment: {
+    label: 'Equipements communs',
+    type: 'input',
+    widget: 'textarea',
+  },
+  arrhes: {
+    label: 'Arrhes',
+    type: 'int',
   },
 }
