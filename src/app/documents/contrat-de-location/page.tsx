@@ -7,9 +7,9 @@ import { useDocument } from '@/app/hooks/document.hook';
 import { getTotalIncome, getBailDate } from "../../helpers/bail-helper";
 import { formatDate, countDays } from '@/app/helpers/date';
 
-export default function ContratMeublee() {
+export default function Contrat() {
   const { bail, save } = useDocument();
-  const title = 'Contrat de location meublée';
+  document.title = 'Contrat de location';
   const totalIncome = getTotalIncome(bail.income, bail.charges);
   const bailDate = getBailDate(bail.bail_date);
   const hasCaution = bail.caution;
