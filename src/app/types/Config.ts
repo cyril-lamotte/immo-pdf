@@ -124,6 +124,11 @@ export const config:Config = {
     type: 'input',
     widget: 'date',
   },
+  invoice_address: {
+    label: 'Adresse de facturation',
+    type: 'input',
+    widget: 'textarea',
+  },
   quittance_amount: {
     label: 'Montant de la quittance',
     type: 'input',
@@ -187,5 +192,18 @@ export const config:Config = {
     label: 'Date du jour',
     type: 'input',
     widget: 'date',
+  },
+  owner_company_name: {
+    label: 'Nom de la société',
+    type: 'input',
+  },
+  owner_siret: {
+    label: 'SIRET',
+    type: 'input',
+  },
+  owner_company_address: {
+    label: 'Adresse de la société',
+    type: 'input',
+    widget: 'textarea',
   },
 }

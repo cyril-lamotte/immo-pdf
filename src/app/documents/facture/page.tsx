@@ -35,10 +35,7 @@ export default function Facture() {
             <h2>Destinataire</h2>
 
             <address className="invoice-address">
-              SOLDE GmbH<br />
-              Dorfwiese 22<br />
-              42389 Wuppertal<br />
-              UST-ID: DE353548701<br />
+              <Bubble item="invoice_address" />
             </address>
 
           </div>

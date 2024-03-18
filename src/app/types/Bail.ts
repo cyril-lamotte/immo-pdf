@@ -23,6 +23,7 @@ export type Bail = {
   caution?: boolean,
   invoice_number?: string,
   invoice_date?: string,
+  invoice_address?: string,
   quittance_amount?: string,
   quittance_start_date?: string,
   quittance_end_date?: string,
@@ -34,4 +35,7 @@ export type Bail = {
   arrhes?: number,
   city?: string,
   today?: string,
+  owner_company_name?: string,
+  owner_siret?: string,
+  owner_company_address?: string,
 };
