@@ -17,6 +17,7 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Backlog
 
+- Widget date : Bouton pour mettre la valeur "aujourd'hui"
 - Envoyer la quittance par mail + copie, nécessite de générer un PDF.
 - Modifier les factures
 - Indiquer le label des bubbles au survol
