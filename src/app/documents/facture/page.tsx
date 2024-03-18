@@ -63,13 +63,6 @@ export default function Facture() {
               </tr>
 
               <tr>
-                <td>Nuitée(s) du 6 au 7 février</td>
-                <td>1</td>
-                <td></td>
-                <td className="invoice-number">66,36&nbsp;&euro;</td>
-              </tr>
-
-              <tr>
                 <td colSpan={3} className="invoice-total">Total</td>
                 <td className="invoice-number">197.08&nbsp;&euro;</td>
               </tr>

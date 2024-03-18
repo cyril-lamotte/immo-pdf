@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useId } from 'react';
 import { config } from '../../types/Config';
 import { useBailContext } from '../../contexts/BailContextProvider';
-import { FilePenLine, XCircle } from 'lucide-react';
+import { FilePenLine, XCircle, CalendarCheck2 } from 'lucide-react';
 import './bubble.scss';
 
 type Props = {
@@ -88,6 +88,12 @@ export default function Bubble(props: Props) {
     }, 1);
   }
 
+  function onSetToday() {
+    const input = document.getElementById(id) as HTMLInputElement;
+    input.value = new Date().toISOString().split('T')[0];
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
   function handleOver() {
     console.log(fieldConfig.label);
   }
@@ -157,6 +163,11 @@ export default function Bubble(props: Props) {
           }
 
         </span>
+
+
+        { widget === 'date' && <>
+          <button type="button" className="im-btn" onClick={onSetToday}><CalendarCheck2 /> aujourd&apos;hui</button>
+        </> }
 
         <span className="bubble__desc">{ fieldConfig.desc }</span>
       </span>
