@@ -2,6 +2,7 @@ import React, { useEffect, useState, useId } from 'react';
 import { config } from '../../types/Config';
 import { useBailContext } from '../../contexts/BailContextProvider';
 import { FilePenLine, XCircle, CalendarCheck2 } from 'lucide-react';
+import { Bail } from '../../types/Bail';
 import './bubble.scss';
 
 type Props = {
@@ -29,7 +30,8 @@ export default function Bubble(props: Props) {
   }, [id]);
 
   const itemName = props.item as keyof typeof config;
-  const value = bail[itemName];
+  const bailItemName = props.item as keyof Bail;
+  const value = bail[bailItemName];
 
   // Provide default configuration.
   let fieldConfig = config[itemName] ?? {
@@ -88,6 +90,10 @@ export default function Bubble(props: Props) {
     }, 1);
   }
 
+  /**
+   * Set today's date in input.
+   * @returns void
+   */
   function onSetToday() {
     const input = document.getElementById(id) as HTMLInputElement;
     input.value = new Date().toISOString().split('T')[0];
@@ -99,7 +105,8 @@ export default function Bubble(props: Props) {
   }
 
   function onInput(e: React.ChangeEvent<HTMLInputElement>) {
-    let value = e.target.value;
+    // Set value with the right type.
+    let value:any = e.target.value;
     if (props.type === 'boolean' && e.target.type === 'checkbox') {
       value = e.target.checked;
     }
@@ -133,26 +140,26 @@ export default function Bubble(props: Props) {
 
         <span className="im-input-wrap">
           { widget === 'input' && <>
-            <input autoFocus={true} type="text" name={itemName} id={id} value={value} onInput={onInput} />
+            <input autoFocus={true} type="text" name={itemName as string} id={id} value={value as string} onInput={onInput} />
           </> }
 
           { widget === 'date' && <>
-            <input autoFocus={true} type="date" name={itemName} id={id} value={value} onInput={onInput} />
+            <input autoFocus={true} type="date" name={itemName as string} id={id} value={value as string} onInput={onInput} />
           </> }
 
           { widget === 'textarea' && <>
-            <textarea autoFocus name={itemName} id={id} value={value} onChange={e => setValue(e.target.value)} />
+            <textarea autoFocus name={itemName as string} id={id} value={value as string} onChange={e => setValue(e.target.value)} />
           </> }
 
           { widget === 'checkbox' && <>
-            <input autoFocus={true} type="checkbox" name={itemName} id={id} defaultChecked={value} onInput={onInput} />
+            <input autoFocus={true} type="checkbox" name={itemName as string} id={id} defaultChecked={value as boolean} onInput={onInput} />
             <label htmlFor={id} className="">{ fieldConfig.label }</label>
           </> }
 
           { widget === 'radios' && <>
             { config[itemName]?.values?.map((item: any, index: any) => {
               return <span key={index}>
-                <input autoFocus={true} type="radio" name={itemName} id={id + index} value={item.value} onInput={onInput} />
+                <input autoFocus={true} type="radio" name={itemName as string} id={id + index} value={item.value} onInput={onInput} />
                 <label htmlFor={id + index}>{item.label}</label>
               </span>
             }) }
