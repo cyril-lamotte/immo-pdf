@@ -34,7 +34,7 @@ export default function Dashboard() {
           { keys.map((key) => (
             <tr key={key}>
               <td>{config[key].label}</td>
-              <td><Bubble item={key} type={config[key].type} /></td>
+              <td><Bubble item={key as string} /></td>
               <td>{config[key].desc}</td>
             </tr>
           ))}

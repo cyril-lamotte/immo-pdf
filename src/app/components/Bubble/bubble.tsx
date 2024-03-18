@@ -32,6 +32,7 @@ export default function Bubble(props: Props) {
   const itemName = props.item as keyof typeof config;
   const bailItemName = props.item as keyof Bail;
   const value = bail[bailItemName];
+  const type = config[itemName]?.type;
 
   // Provide default configuration.
   let fieldConfig = config[itemName] ?? {
@@ -59,7 +60,7 @@ export default function Bubble(props: Props) {
     bubbleClass += ' bubble--is-open';
   }
 
-  if (props.type === 'boolean') {
+  if (type === 'boolean') {
     label = value ? 'Oui' : 'Non';
   }
 
@@ -107,7 +108,7 @@ export default function Bubble(props: Props) {
   function onInput(e: React.ChangeEvent<HTMLInputElement>) {
     // Set value with the right type.
     let value:any = e.target.value;
-    if (props.type === 'boolean' && e.target.type === 'checkbox') {
+    if (type === 'boolean' && e.target.type === 'checkbox') {
       value = e.target.checked;
     }
 
@@ -134,6 +135,7 @@ export default function Bubble(props: Props) {
 
   return (
     <span className={ bubbleClass } onMouseDown={(e) => e.stopPropagation()}>
+
       <button type="button" className="bubble__editable" onClick={handleClick} onMouseOver={handleOver}>{label}</button>
       <span className="bubble__form">
         <label htmlFor={id} className="bubble__label">{ fieldConfig.label }</label>
@@ -170,7 +172,6 @@ export default function Bubble(props: Props) {
           }
 
         </span>
-
 
         { widget === 'date' && <>
           <button type="button" className="im-btn" onClick={onSetToday}><CalendarCheck2 /> aujourd&apos;hui</button>

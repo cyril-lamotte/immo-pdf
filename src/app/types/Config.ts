@@ -73,7 +73,7 @@ export const config:Config = {
     type: 'int',
   },
   owner_name: {
-    label: 'Nom du proriétaire',
+    label: 'Nom du propriétaire',
     desc: 'Ex : M. Durand',
     type: 'input',
   },

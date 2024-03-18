@@ -3,6 +3,7 @@
 import React from 'react';
 import Bubble from "@/app/components/Bubble/bubble"
 import Signature from '@/app/components/Signature/signature';
+import DataSet from '@/app/components/DataSet/dataSet';
 import { useDocument } from '@/app/hooks/document.hook';
 import { getTotalIncome, getBailDate, getLocationDuration, getTaxeDeSejour } from "../../helpers/bail-helper";
 import { formatDate } from '@/app/helpers/date';
@@ -12,6 +13,12 @@ export default function Contrat() {
   document.title = 'Contrat de location';
   const totalIncome = getTotalIncome(bail.income, bail.charges);
   const hasCaution = bail.caution;
+
+  // Array of items displayed.
+  const itemList = [
+    'owner_name',
+    'caution',
+  ];
 
   const isLocationSaisonniere = bail.type == 'season';
   const isLocationVide = bail.type == 'empty';
@@ -37,13 +44,7 @@ export default function Contrat() {
   return (
     <>
       <div className="document-form hidden-print">
-        <form>
-          <div className="form-group">
-            <input type="checkbox" name="caution" id="caution" defaultChecked={bail.caution} onInput={onInput} />
-            <label htmlFor="caution"><span>Caution solidaire</span></label>
-          </div>
-
-        </form>
+        <DataSet itemList={itemList} />
       </div>
 
       <article className="document document-contract">
