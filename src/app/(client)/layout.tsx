@@ -10,7 +10,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
     closeBubbles();
   }
 
-  const handleESC = (e: KeyboardEvent) =>  {
+  const handleESC = (e: React.KeyboardEvent<HTMLInputElement>) =>  {
     if (e.code === 'Escape') {
       closeBubbles();
     }
@@ -22,15 +22,13 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <html lang="fr" onMouseDown={handleClick} onKeyUp={handleESC}>
-      <body>
-        <Navigation />
-        <main>
-          <BailContextProvider>
-            {children}
-          </BailContextProvider>
-        </main>
-      </body>
-    </html>
+    <div onMouseDown={handleClick} onKeyUp={handleESC}>
+      <Navigation />
+      <main>
+        <BailContextProvider>
+          {children}
+        </BailContextProvider>
+      </main>
+    </div>
   )
 }
