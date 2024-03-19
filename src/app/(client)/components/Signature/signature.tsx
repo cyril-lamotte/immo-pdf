@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import SignatureCanvas from 'react-signature-canvas'
 import { XCircle, CheckCircle } from 'lucide-react';
-import { useBailContext } from '@/app/contexts/BailContextProvider';
+import { useBailContext } from '@/app/(client)/contexts/BailContextProvider';
 import toast from 'react-hot-toast';
 
 export default function Signature() {

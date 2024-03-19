@@ -1,9 +1,9 @@
 "use client"
 
 import React from 'react';
-import { usePage } from '@/app/hooks/page.hook';
-import Bubble from "@/app/components/Bubble/bubble"
-import Loading from '@/app/components/Loading/Loading';
+import { usePage } from '@/app/(client)/hooks/page.hook';
+import Bubble from "@/app/(client)/components/Bubble/bubble"
+import Loading from '@/app/(client)/components/Loading/Loading';
 import { config } from '../types/Config';
 import './donnees.scss';
 

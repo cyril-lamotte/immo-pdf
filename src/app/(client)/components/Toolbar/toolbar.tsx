@@ -4,7 +4,7 @@ import React from 'react';
 import jwt from "jwt-simple";
 import { FileCheck2, Link2 } from 'lucide-react';
 import './toolbar.scss';
-import { useBailContext } from "@/app/contexts/BailContextProvider";
+import { useBailContext } from "@/app/(client)/contexts/BailContextProvider";
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function Toolbar() {

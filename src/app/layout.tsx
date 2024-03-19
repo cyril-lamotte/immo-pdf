@@ -1,35 +1,14 @@
-"use client"
-
 import React from 'react';
-import Navigation from './components/Navigation/navigation';
-import { BailContextProvider } from './contexts/BailContextProvider';
-import './styles/styles.scss'
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const handleClick = () => {
-    closeBubbles();
-  }
-
-  const handleESC = (e: KeyboardEvent) =>  {
-    if (e.code === 'Escape') {
-      closeBubbles();
-    }
-  }
-
-  const closeBubbles = () => {
-    const event = new Event('onBubbleHide');
-    document.dispatchEvent(event);
-  }
-
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="fr" onMouseDown={handleClick} onKeyUp={handleESC}>
+    <html lang="en">
       <body>
-        <Navigation />
-        <main>
-          <BailContextProvider>
-            {children}
-          </BailContextProvider>
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   )

@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { useBailContext } from "@/app/contexts/BailContextProvider";
+import { useBailContext } from "@/app/(client)/contexts/BailContextProvider";
 
 export default function Section({ name, children }: { name: string, children: React.ReactNode }) {
   const { bail } = useBailContext();

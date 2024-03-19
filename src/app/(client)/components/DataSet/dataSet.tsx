@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { config } from '@/app/types/Config';
+import { config } from '@/app/(client)/types/Config';
 import Bubble from '../Bubble/bubble';
 
 type Props = {

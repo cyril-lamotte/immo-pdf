@@ -1,14 +1,14 @@
 "use client"
 
 import React from 'react';
-import Bubble from "@/app/components/Bubble/bubble"
-import Signature from '@/app/components/Signature/signature';
-import DataSet from '@/app/components/DataSet/dataSet';
-import { useDocument } from '@/app/hooks/document.hook';
+import Bubble from "@/app/(client)/components/Bubble/bubble"
+import Signature from '@/app/(client)/components/Signature/signature';
+import DataSet from '@/app/(client)/components/DataSet/dataSet';
+import { useDocument } from '@/app/(client)/hooks/document.hook';
 import { getTotalIncome, getBailDate, getLocationDuration, getTaxeDeSejour } from "../../helpers/bail-helper";
-import { formatDate } from '@/app/helpers/date';
-import Toolbar from '@/app/components/Toolbar/toolbar';
-import Section from '@/app/components/Section/section';
+import { formatDate } from '@/app/(client)/helpers/date';
+import Toolbar from '@/app/(client)/components/Toolbar/toolbar';
+import Section from '@/app/(client)/components/Section/section';
 
 export default function Contrat() {
   const { bail, save } = useDocument();
@@ -33,20 +33,16 @@ export default function Contrat() {
     taxe_de_sejour = getTaxeDeSejour(bail.tenant_count, durationDays);
   }
 
-  function onInput(e: React.ChangeEvent<HTMLInputElement>) {
-    const bailClone = JSON.parse(JSON.stringify(bail));
-    bailClone.caution = e.target.checked;
-    save(bailClone);
-  }
-
-  // Modèle officiel
-  // https://www.inc-conso.fr/sites/default/files/pdf/INC_FP105_contrat-type-logement-meuble.pdf
-
   return (
     <>
       <div className="sidebar hidden-print">
         <Toolbar />
         <DataSet itemList={itemList} />
+
+        <aside>
+          <h2>Aide</h2>
+          <p><a href="https://www.inc-conso.fr/sites/default/files/pdf/INC_FP105_contrat-type-logement-meuble.pdf" rel="noreferrer" target="_blank">Modèle officiel de contrat meublé (INC)</a></p>
+        </aside>
       </div>
 
       <article className="document document-contract">

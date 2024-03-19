@@ -6,8 +6,8 @@ import DocumentHeader from "../../components/DocumentHeader/documentHeader"
 import DocumentFooter from '../../components/DocumentFooter/documentFooter';
 import { BailContext } from '../../contexts/BailContextProvider';
 import { useDocument } from '../../hooks/document.hook';
-import Toolbar from '@/app/components/Toolbar/toolbar';
-import DataSet from '@/app/components/DataSet/dataSet';
+import Toolbar from '@/app/(client)/components/Toolbar/toolbar';
+import DataSet from '@/app/(client)/components/DataSet/dataSet';
 
 export default function DepotDeGarantie() {
   const { bail, setBail, save } = useDocument();

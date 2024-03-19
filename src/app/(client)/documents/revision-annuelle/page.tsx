@@ -1,12 +1,12 @@
 "use client"
 
 import React from 'react';
-import Bubble from "@/app/components/Bubble/bubble"
-import DocumentHeader from "@/app/components/DocumentHeader/documentHeader"
-import DocumentFooter from '@/app/components/DocumentFooter/documentFooter';
-import { useDocument } from '@/app/hooks/document.hook';
+import Bubble from "@/app/(client)/components/Bubble/bubble"
+import DocumentHeader from "@/app/(client)/components/DocumentHeader/documentHeader"
+import DocumentFooter from '@/app/(client)/components/DocumentFooter/documentFooter';
+import { useDocument } from '@/app/(client)/hooks/document.hook';
 import { getInscrease, getNewIncome, getMonthName, getNextYear } from "../../helpers/bail-helper";
-import Toolbar from '@/app/components/Toolbar/toolbar';
+import Toolbar from '@/app/(client)/components/Toolbar/toolbar';
 
 export default function AnnualRent() {
   const { bail, setBail, save } = useDocument();

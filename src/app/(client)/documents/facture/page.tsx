@@ -3,10 +3,10 @@
 import React from 'react';
 import User from "../../components/User/user";
 import './invoice.scss';
-import Bubble from '@/app/components/Bubble/bubble';
-import { formatDate } from '@/app/helpers/date';
-import { useDocument } from '@/app/hooks/document.hook';
-import Toolbar from '@/app/components/Toolbar/toolbar';
+import Bubble from '@/app/(client)/components/Bubble/bubble';
+import { formatDate } from '@/app/(client)/helpers/date';
+import { useDocument } from '@/app/(client)/hooks/document.hook';
+import Toolbar from '@/app/(client)/components/Toolbar/toolbar';
 
 export default function Facture() {
   const { bail, setBail, save } = useDocument();
