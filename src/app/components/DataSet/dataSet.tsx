@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { config } from '@/app/types/Config';
 import Bubble from '../Bubble/bubble';
 
@@ -10,14 +10,14 @@ export default function DataSet(props: Props) {
 
   return (
     <aside>
-      <table>
+      <dl className="im-dl">
         { props.itemList.map((key) => (
-          <tr key={key}>
-            <th>{config[key].label}</th>
-            <td><Bubble item={key} /></td>
-          </tr>
+          <Fragment key={key}>
+            <dt>{config[key].label}</dt>
+            <dd><Bubble item={key} /></dd>
+          </Fragment>
         ))}
-      </table>
+      </dl>
     </aside>
   )
 }

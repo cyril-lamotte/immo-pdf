@@ -7,8 +7,8 @@ import './toolbar.scss';
 import { useBailContext } from "@/app/contexts/BailContextProvider";
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function Print() {
-  const { bail, setBail, save } = useBailContext();
+export default function Toolbar() {
+  const { bail } = useBailContext();
 
   function print() {
     window.print();

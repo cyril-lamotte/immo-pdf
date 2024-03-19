@@ -1,9 +1,6 @@
 .toolbar {
-  position: fixed;
-  inset-inline-end: 1rem;
-  inset-block-start: 10rem;
-  justify-content: center;
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 1rem;
   z-index: 1;
 }

@@ -14,9 +14,12 @@
   }
 
   // Add counter on h2.
+  section {
+    counter-increment: sections;
+  }
+
   h2 {
     font-size: 1rem;
-    counter-increment: sections;
     padding-block-end: 0.25rem;
     border-block-end: 1px solid var(--color-accent);
     font-weight: bold;

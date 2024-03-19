@@ -1,7 +1,31 @@
-.document-form,
+.document-layout {
+
+  --spacing: 1.5rem;
+
+  display: grid;
+  margin-inline: var(--spacing);
+  gap: 1.5rem;
+
+  --padding-inline: var(--spacing);
+  --content-max: 800px;
+  --content-width: min(100% - (var(--padding-inline) * 2), var(--content-max));
+  --max-size: minmax(0, 270px);
+
+  // Create implicite column names : full-width | max | content .
+  grid-template-columns:
+    [main-start] var(--content-width) [main-end sidebar-start]
+    1fr [sidebar-end];
+}
+
+.sidebar {
+  grid-column: sidebar;
+  grid-row: 1 / 2;
+}
+
 .document {
-  margin: 2rem auto;
-  max-inline-size: 800px;
+  grid-column: main;
+  grid-row: 1 / 2;
+  margin: 0 auto 2rem;
   background-color: var(--document-color);
   font-family: 'Times New Roman', Times, serif;
   padding: 4rem;
